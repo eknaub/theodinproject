@@ -1,0 +1,31 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-size: 40px;
+  box-sizing: border-box;
+  /* 
+    border box: uses actual height and width for elements, 
+    doesnt add padding, margin and border to it 
+  */
+}
+
+.box-one {
+  background-color: #EB5757;
+  /* 
+    without border-box, the actual height would be:
+    height + padding*2 (left + right) + margin*2 + border*2 = 260px
+    with border-box its 100px
+  */
+  padding: 10px;
+  height: 100px;
+  width: 100px;
+  border: 20px solid #9B51E0;
+  margin: 50px;
+}
+
+.box-two {
+  background-color: #2D9CDB;
+  padding: 10px;
+  border: 20px solid #9B51E0;
+  margin: 25px;
+}
