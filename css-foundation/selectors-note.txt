@@ -1,0 +1,84 @@
+--- Selectors ---
+
+Universal Selector
+
+* {
+  color: purple;
+}
+
+
+
+Type Selectors
+
+div {
+  color: white;
+}
+
+
+
+Class Selectors
+
+.alert-text {
+  color: red;
+}
+
+
+
+ID Selectors
+
+#title {
+  background-color: red;
+}
+
+
+
+Grouping Selectors
+
+.read,
+.unread {
+  color: white;
+  background-color: black;
+}
+
+.read {
+  /* several unique declarations */
+}
+
+.unread {
+  /* several unique declarations */
+}
+
+
+
+Chaining Selectors
+
+<div>
+  <div class="subsection header">Latest Posts</div>
+  <p class="subsection" id="preview">This is where a preview for a post might go.</p>
+</div>
+
+.subsection.header {
+  color: red;
+}
+
+.subsection#preview {
+  color: blue;
+}
+
+
+
+Descendant Combinator
+
+<div class="ancestor"> <!-- A -->
+  <div class="contents"> <!-- B -->
+    <div class="contents"> <!-- C -->
+    </div>
+  </div>
+</div>
+
+<div class="contents"></div> <!-- D -->
+
+.ancestor .contents {
+  /* some declarations */
+}
+In the above example, the first two elements with the contents class (B and C) would be selected, but that last element (D) won’t be.
