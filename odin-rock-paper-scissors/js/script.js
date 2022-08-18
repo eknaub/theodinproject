@@ -15,6 +15,8 @@ const winner = document.querySelector('.winner');
 const playAgain = document.querySelector('.play-again');
 playAgain.addEventListener('click', restartGame);
 
+const computerBtns = document.querySelectorAll('.computer-selection-btn');
+
 let playerWins = 0;
 let computerWins = 0;
 const MAXWINS = 5;
@@ -44,7 +46,8 @@ function resetScores() {
   playerWins = 0;
   computerWins = 0;
   result.textContent = '';
-  score.textContent = `Score: Computer 0 - Player 0`;
+  score.textContent = `Score: Computer ${computerWins} - Player ${playerWins}`;
+  highlightComputerChoice(''); //unhighlights all computer choices, lazy mode
 }
 
 function getComputerChoice() {
@@ -57,6 +60,12 @@ function getComputerChoice() {
 function playRound(playerSelection) {
   const ps = playerSelection.toLowerCase();
   const cs = getComputerChoice().toLowerCase();
+
+  highlightComputerChoice(cs);
+
+  const computerRockBtn = document.querySelector('.rock.computer-selection-btn');
+  const computerPaperBtn = document.querySelector('.paper.computer-selection-btn');
+  const computerScissorsBtn = document.querySelector('.scissors.computer-selection-btn');
 
   const playerWon = checkIfPlayerWon(ps,cs);
 
@@ -71,6 +80,17 @@ function playRound(playerSelection) {
   else {
     showWinner();
   }
+}
+
+function highlightComputerChoice(computerChoice) {
+  computerBtns.forEach((button) => {
+    if(computerChoice === button.classList[0]) {
+      button.classList.add('computer-selection-active');
+    }
+    else {
+      button.classList.remove('computer-selection-active');
+    }
+  });
 }
 
 function showWinner() {
@@ -133,9 +153,9 @@ function buildResultMessage(playerWin, playerSelection, computerSelection) {
   }
 
   if(playerWin) {
-    return `You win! Player selection ${playerSelection} beats Computer selection ${computerSelection}.`;
+    return `You win! Player\'s ${playerSelection} beats Computer\'s ${computerSelection}.`;
   }
   else {
-    return `You lose! Computer selection ${computerSelection} beats Player selection ${playerSelection}.`;
+    return `You lose! Computer\'s ${computerSelection} beats Player\'s ${playerSelection}.`;
   }
 }
