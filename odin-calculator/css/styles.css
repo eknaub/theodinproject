@@ -1,0 +1,132 @@
+body { 
+  font-family: Roboto, sans-serif;
+  padding: 0;
+  margin: 0;
+  background-color: beige;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: black;
+  margin-top: 1em;
+  margin-bottom: 4em;
+}
+
+.calculator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calculatorwrapper {
+  background-color: #676767;
+  width: 15rem;
+  border-radius: 4px;
+  border: 1px solid black;
+}
+
+.row {
+  display: flex;
+  margin: 2px;
+  gap: 2px;
+}
+
+button {
+  font-weight: bold;
+  color: black;
+  width: 100%;
+  height: 2em;
+  border: 1px solid black;
+}
+
+button.number.zero {
+  width: 230%;
+}
+
+button.settings {
+  background-color: #FFCB80;
+}
+button.settings:hover {
+  background-color: rgba(255, 202, 128, 0.8);
+}
+button.settings:active {
+  background-color: #FFCB80;
+}
+
+button.number {
+  background-color: #EAEAEA;
+}
+button.number:hover {
+  background-color: rgba(235, 235, 235, 0.8)
+}
+button.number:active {
+  background-color: #EAEAEA;
+}
+
+button.operator {
+  background-color: #ffb44b;
+}
+button.operator:hover {
+  background-color: rgba(255, 149, 0, 0.8);
+}
+button.operator:active {
+  background-color: #ffb44b;
+}
+
+#dot {
+  background-color: #EAEAEA;
+}
+#dot:hover {
+  background-color: rgba(235, 235, 235, 0.8)
+}
+#dot:active {
+  background-color: #EAEAEA;
+}
+
+#equals {
+  background-color: #ffb44b;
+}
+#equals:hover {
+  background-color: rgba(255, 149, 0, 0.8);
+}
+#equals:active {
+  background-color: #ffb44b;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 75px;
+  background-color: #a7a7a7;
+  margin: 0.5rem;
+}
+
+.currentNumber {
+  margin-bottom: 0;
+  margin-top: 0.5em;
+  margin-right: .5em;
+}
+
+.displayNumber,
+.displayOperator {
+  margin-bottom: 0;
+  margin-right: .5em;
+}
+
+.firstInput {
+  display: flex;
+  justify-content: end;
+  color: #c4c4c4;
+  font-size: 18px;
+}
+
+.currentInput {
+  text-align: end;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 24px;
+}

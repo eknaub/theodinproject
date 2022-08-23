@@ -1,0 +1,90 @@
+body {
+  font-family: Roboto, sans-serif;
+  padding: 0;
+  margin: 0;
+  background-color: #18181B;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+}
+
+.game-screen,
+.win-screen {
+  color: white;
+}
+
+.player-selection-text,
+.computer-selection-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.win-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.winner {
+  font-weight: bold;
+}
+
+.game-div {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 16px;
+}
+
+.gameinfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.score,
+.result {
+  margin: 0;
+  padding: 0;
+}
+
+.player-selection-btn,
+.computer-selection-btn {
+  background-color: #2c2c2c;
+  width: 100px;
+  height: 100px;
+  border: none;
+  font-size: 50px;
+}
+
+.player-selection-btn:hover {
+  background-color: #4e4e4e;
+}
+
+.computer-selection-active {
+  background-color: #4e4e4e;
+}
+
+.play-again {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: #2c2c2c;
+  height: 40px;
+  width: 160px;
+  border: .2px solid rgba(245, 245, 220, 0.199);
+}
+
+.play-again:hover {
+  background-color: #4e4e4e;
+}
