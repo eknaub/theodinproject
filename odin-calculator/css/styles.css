@@ -50,35 +50,50 @@ button.settings {
   background-color: #FFCB80;
 }
 button.settings:hover {
-  background-color: rgba(255, 202, 128, 0.5);
+  background-color: rgba(255, 202, 128, 0.8);
+}
+button.settings:active {
+  background-color: #FFCB80;
 }
 
 button.number {
   background-color: #EAEAEA;
 }
 button.number:hover {
-  background-color: rgba(235, 235, 235, 0.5)
+  background-color: rgba(235, 235, 235, 0.8)
+}
+button.number:active {
+  background-color: #EAEAEA;
 }
 
 button.operator {
-  background-color: #FF9600;
+  background-color: #ffb44b;
 }
 button.operator:hover {
-  background-color: rgba(255, 149, 0, 0.5);
+  background-color: rgba(255, 149, 0, 0.8);
+}
+button.operator:active {
+  background-color: #ffb44b;
 }
 
 #dot {
   background-color: #EAEAEA;
 }
 #dot:hover {
-  background-color: rgba(235, 235, 235, 0.5)
+  background-color: rgba(235, 235, 235, 0.8)
+}
+#dot:active {
+  background-color: #EAEAEA;
 }
 
 #equals {
-  background-color: #FF9600;
+  background-color: #ffb44b;
 }
 #equals:hover {
-  background-color: rgba(255, 149, 0, 0.5);
+  background-color: rgba(255, 149, 0, 0.8);
+}
+#equals:active {
+  background-color: #ffb44b;
 }
 
 .input {

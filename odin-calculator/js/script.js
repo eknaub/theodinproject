@@ -1,8 +1,3 @@
-/* TODO: 
-    equalsPressed
-    keyboard support (1,2,3,4,5,6,7,8,9,0, dot, remove, * / + -)
-*/
-
 const currentNumberTxt = document.querySelector('.currentNumber');
 const displayNumberTxt = document.querySelector('.displayNumber');
 const displayOperatorTxt = document.querySelector('.displayOperator');
@@ -11,6 +6,8 @@ let firstNumber = null;
 let nextNumber = null;
 let currentOperator = null;
 let wasOperatorPressed = false;
+
+document.addEventListener('keypress', keyPressed);
 
 const removeBtn = document.querySelector('.settings.remove');
 removeBtn.addEventListener('click', removeLastCharOfInput);
@@ -41,13 +38,49 @@ operatorBtns.forEach((button) => {
   })
 });
 
+function keyPressed(e) {
+  const button = document.querySelector(`button[data-key="${e.keyCode}"]`);
+  if(!button) return;
+  
+  if(button.classList.contains('number')) {
+    appendNumber(button.textContent);
+  }
+  else if(button.classList.contains('operator')) {
+    operatorPressed(button.textContent);
+  }
+  else if(button.classList.contains('remove')) {
+    removeLastCharOfInput();
+  }
+  else if (button.id === 'dot'){
+    appendDot();
+  }
+  else if (button.id === 'equals'){
+    equalsPressed();
+  }
+}
+
 function appendDot() {
   if(currentNumberTxt.textContent.includes('.')) return;
   currentNumberTxt.textContent += '.';
 }
 
 function equalsPressed() {
+  if(firstNumber === null) return;
   
+  let tempFirstNumber = firstNumber;
+  nextNumber = Number(currentNumberTxt.textContent);
+  firstNumber = round(operate(currentOperator, firstNumber, nextNumber));
+  if(firstNumber === null) {
+    dividedByZero();
+  }
+  else {
+    displayNumberTxt.textContent = `${tempFirstNumber} ${currentOperator} ${nextNumber} =`;
+    displayOperatorTxt.textContent = '';
+    currentNumberTxt.textContent = firstNumber;
+    currentOperator = null;
+  }
+
+  wasOperatorPressed = true;
 }
 
 function resetCalculator() {
@@ -108,7 +141,7 @@ function operatorPressed(input) {
                       (to display and variables)
     Equals pressed: use number/operator from 1, and currentNumber
                     displya at top number/operator from 1 and
-                    secondnumber und operator from current
+                    secondnumber and operator from current
                     display in box only solution
   */
   if(currentOperator === null) {
