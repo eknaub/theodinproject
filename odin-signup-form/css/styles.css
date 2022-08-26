@@ -36,7 +36,7 @@ fieldset {
 
 .contentTop {
   font-size: 2em;
-  margin: 24px 24px;
+  margin: 8px 24px;
 }
 
 .columnInput {
@@ -162,6 +162,16 @@ button:hover {
 .author > a {
   color: white;
   margin: 0px 4px;
+}
+
+.secret {
+  font-size: .4em;
+  margin: 0;
+  padding: 0;
+}
+
+.secretLink {
+  color: #363C50;
 }
 
 @media screen and (max-width: 900px) {
