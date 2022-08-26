@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <script src="./js/script.js" defer></script>
+</head>
+<body>
+  <div class="image">
+    <p class="author">
+      Photo by <a href="https://unsplash.com/@dmjdenise?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Denise Jans</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+    </p>
+    <div class="logo">
+      <img src="./img/movielogo.svg" alt="movielogo" class="movielogo">
+      <h1 class="logotitle">Movlix.</h1>
+    </div>
+  </div>
+  <div class="content">
+    <div class="contentTop">
+      <p>
+        This is not a real online Service! You know you need something like this in your life to help you realize your deepest dreams. 
+        <br>
+        Sign up <em>now</em> to get started.
+      </p>
+      <p>
+        You <em>know</em> you want to
+      </p>
+    </div>
+    <form action="./index.html" method="post" id="myForm" onsubmit="return validate()">
+      <legend>Let's do this!</legend>
+
+      <fieldset>
+        <div class="columnInput">
+          <label for="firstName">FIRST NAME</label>
+          <input type="text" name="firstName" required>
+        </div>
+        <div class="columnInput">
+          <label for="lastName">LAST NAME</label>
+          <input type="text" name="lastName">
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="columnInput">
+          <label for="email">EMAIL</label>
+          <input type="email" name="email">
+        </div>
+        <div class="columnInput">
+          <label for="phoneNumber">PHONE NUMBER</label>
+          <input type="text" name="phoneNumber">  
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="columnInput">
+          <label for="password">PASSWORD</label>
+          <input type="password" name="password" id="password" required>
+          <p class="passwordError">* Passwords do not match</p>
+        </div>
+        <div class="columnInput">
+          <label for="confirmPassword">CONFIRM PASSWORD</label>
+          <input type="password" name="confirmPassword" id="confirmPassword" required>  
+        </div>
+      </fieldset>
+    </form>
+    <footer>
+      <button type="submit" form="myForm">Create Account</button>
+      <p>Already have an account? <a href="#" class="login">Log in</a></p>
+    </footer>
+  </div>
+</body>
+</html>

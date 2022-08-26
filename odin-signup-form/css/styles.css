@@ -1,0 +1,181 @@
+body {
+  font-family: "Decker", Roboto, sans-serif;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "Hattori_Hanzo_Italic";
+  src: url("../font/Hattori_Hanzo_Italic.otf");
+}
+
+@font-face {
+  font-family: "Decker";
+  src: url("../font/Decker.ttf");
+}
+
+/*
+  Right Side - Content
+*/
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 60vw;
+  background-color: #F9FAFB;
+}
+
+fieldset {
+  border: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.contentTop {
+  font-size: 2em;
+  margin: 24px 24px;
+}
+
+.columnInput {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFEFE;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 12px;
+  gap: 16px;
+  width: 100%;
+}
+
+label {
+  letter-spacing: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+legend {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+input {
+  border-color: rgba(230, 231, 235, 0.5);
+  height: 1.8em;
+} 
+
+input:focus {
+  outline-color: blue;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.error:focus {
+  outline-color: red;
+}
+
+.passwordError {
+  display: none;
+  color: red;
+}
+
+.passwordErrorShow {
+  display: block;
+}
+
+footer {
+  margin: 32px;
+}
+
+button {
+  font-weight: bold;
+  font-size: .9em;
+  color: black;
+  background-color: #F9FAFB;
+  border-radius: 8px;
+  border-color: #363C50;
+  height: 40px;
+  width: 150px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+  background-color: #363C50;
+  color: white;
+  cursor: pointer;
+}
+
+.login {
+  background-color: transparent;
+  color: #363C50;
+  border: none;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+/*
+  Left Side - Image
+*/
+
+.image {
+  background-image: url(../img/movie.jpg);
+  background-position: center;
+  background-size: auto;
+  background-repeat: no-repeat;
+  width: 40vw;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: hsla(0, 0%, 0%, 0.25);
+  position: relative;
+  top: 25vh;
+  gap: 16px;
+}
+
+.movielogo {
+  height: 10vh;
+}
+
+.logotitle {
+  font-family: 'Hattori_Hanzo_Italic', Roboto, sans-serif;
+  color: white;
+  font-weight: bold;
+  font-size: 2.5em;
+}
+
+.author {
+  text-align: end;
+  margin: 0;
+  color: white;
+  font-size: 1em;
+}
+
+.author > a {
+  color: white;
+  margin: 0px 4px;
+}
+
+@media screen and (max-width: 900px) {
+  body {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .image {
+    width: auto;
+    height: 50vh;
+  }
+
+  .content {
+    width: 100vw;
+  }
+}
