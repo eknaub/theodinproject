@@ -167,10 +167,9 @@ button:hover {
 .secret {
   font-size: .4em;
   margin: 0;
-  padding: 0;
 }
 
-.secretLink {
+.secret > a {
   color: #363C50;
 }
 
