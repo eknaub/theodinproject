@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library</title>
+  <script src="js/script.js" defer></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    my library
+  </header>
+  <div class="content">
+    <div class="add-book-dialog">
+      <form id="input" method="dialog">
+        <div class="user-input">
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title" required>
+        </div>
+        <div class="user-input">
+          <label for="author">Author</label>
+          <input type="text" name="author" id="author" required>
+        </div>
+        <div class="user-input">
+          <label for="read">Read</label>
+          <input type="checkbox" name="read" id="read">
+        </div>
+      </form>
+      <button class="add" form="input" type="submit">Add</button>
+    </div>
+    <div class="categories">
+      <table id="book-table">
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
