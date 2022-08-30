@@ -1,0 +1,121 @@
+body {
+  font-family: Roboto, sans-serif;
+  margin: 0 auto;
+  padding: 0;
+  height: 100vh;
+  background-color: #F9FAFB;
+}
+
+.title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 3em;
+  color: #0a0a23;
+  padding: 24px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.message {
+  font-size: 2em;
+}
+
+.row > button {
+  height: 125px;
+  width: 125px;
+  font-size: 5em;
+  color: white;
+  border: 1px solid black;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
+}
+
+.X {
+  background-color: blue;
+}
+
+.O {
+  background-color: red;
+}
+
+.gameboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+  gap: 16px;
+  transition: 0.3s;
+}
+
+.gameboard-wrapper {
+  background-color: beige;
+  padding: 2em;
+  border: 1px solid black;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+}
+
+.startBtn,
+.resetBtn,
+.backBtn,
+.playerBtn,
+.aiBtn {
+  background-color:#0a0a23;
+  color: white;
+  font-weight: bold;
+  font-size: 1em;
+  border: none; 
+  border-radius: 8px; 
+  padding: 10px;
+  min-width: 100px;
+  transition: 0.3s;
+}
+
+.startBtn:hover,
+.resetBtn:hover,
+.backBtn:hover,
+.playerBtn:hover,
+.aiBtn:hover {
+  background-color: #191957;
+}
+
+.startBtn:disabled {
+  background-color: grey;
+}
+
+.startBtn:disabled:hover {
+  background-color: grey;
+}
+
+.choose-enemy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 80vh;
+}
+
+.choose-enemy-title {
+  font-weight: bold;
+  font-size: 3em;
+  color: #0a0a23;
+  padding: 24px;
+}
+
+.choose-enemy-choice {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 25%;
+}
+
+.inactive {
+  display: none;
+}
+
