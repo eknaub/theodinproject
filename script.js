@@ -1,5 +1,5 @@
 let header = document.querySelector('header');
-var sticky = header.offsetTop;
+let sticky = header.offsetTop;
 
 window.addEventListener('scroll', () => {
   if(window.scrollY > sticky) {

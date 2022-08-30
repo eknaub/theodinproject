@@ -1,10 +1,60 @@
+"use strict";
 let addBtn = document.querySelector('.add');
 let table = document.querySelector('#book-table tbody')
 
-let myLibrary = [];
-let bookId = 1; //used as unique identifier for books
-
 addBtn.addEventListener('click', addBook);
+
+//Factory Function  
+const myLibrary = (() => {
+  //private attribute
+  let books = [];
+
+  function add(book) {
+    books.push(book);
+  };
+
+  function updateBookReadStatusById(bookId) {
+    books = books.map(elem => {
+      if(bookId === elem.id) {
+        return {...elem, read: !elem.read};
+      }
+
+      return elem;
+    });
+  };
+
+  function removeBookById(bookId) {
+    books = books.filter(elem => { 
+      return bookId !== elem.id;
+    });
+  };
+
+  //read only
+  function getItems() {
+    return Object.freeze([...books]);
+  }
+
+  //return object containing those functions (public)
+  //freeze => cant change the definition of those public functions
+  return Object.freeze({
+    add,
+    updateBookReadStatusById,
+    removeBookById,
+    getItems
+  })
+})();
+
+// IIFE (Immediately Invoked Function Expression)
+let Book = (() => {
+  //id used as unique identifier for books
+  let id = 1;
+  return function Book(title, author, read) {
+    this.id = id++;
+    this.title = title;
+    this.author = author;
+    this.read = read;
+  };
+})();
 
 // Default Data
 const book1 = new Book("Book1", "Author1", true);
@@ -16,13 +66,6 @@ addBookToLibrary(book3);
 insertBookIntoTableDom(book1);
 insertBookIntoTableDom(book2);
 insertBookIntoTableDom(book3);
-
-function Book(title, author, read) {
-  this.id = bookId++;
-  this.title = title;
-  this.author = author;
-  this.read = read;
-}
 
 function addBook() {
   let titleInput = document.querySelector('#title');
@@ -38,7 +81,7 @@ function addBook() {
 }
 
 function addBookToLibrary(book) {
-  myLibrary.push(book);
+  myLibrary.add(book);
 }
 
 function validateInput(title, author) {
@@ -102,13 +145,7 @@ function updateReadStatusInLibrary(btn) {
   //book id from tr
   const bookId = Number(btn.parentNode.parentNode.getAttribute('data-key'));
 
-  myLibrary = myLibrary.map(elem => {
-    if(bookId === elem.id) {
-      return {...elem, read: !elem.read};
-    }
-
-    return elem;
-  });
+  myLibrary.updateBookReadStatusById(bookId);
 }
 
 function updateReadStatusInDom(btn) {
@@ -133,9 +170,7 @@ function removeBookInLibrary(btn) {
    //book id from tr
   const bookId = Number(btn.parentNode.parentNode.getAttribute('data-key'));
 
-  myLibrary = myLibrary.filter(elem => { 
-    return bookId !== elem.id;
-  });
+  myLibrary.removeBookById(bookId);
 }
 
 function removeBookInDom(btn) {
