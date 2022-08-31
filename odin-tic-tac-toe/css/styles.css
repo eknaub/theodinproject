@@ -92,6 +92,14 @@ body {
   background-color: grey;
 }
 
+.resetBtn:disabled {
+  background-color: grey;
+}
+
+.resetBtn:disabled:hover {
+  background-color: grey;
+}
+
 .choose-enemy {
   display: flex;
   flex-direction: column;
