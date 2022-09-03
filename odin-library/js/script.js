@@ -4,45 +4,37 @@ let table = document.querySelector('#book-table tbody')
 
 addBtn.addEventListener('click', addBook);
 
-//Factory Function  
-const myLibrary = (() => {
-  //private attribute
-  let books = [];
+class Library {
+  books = [];
 
-  function add(book) {
-    books.push(book);
-  };
+  //constructor() {}
 
-  function updateBookReadStatusById(bookId) {
-    books = books.map(elem => {
+  add(book) {
+    this.books.push(book);
+  }
+
+  updateBookReadStatusById(bookId) {
+    this.books = this.books.map(elem => {
       if(bookId === elem.id) {
         return {...elem, read: !elem.read};
       }
 
       return elem;
     });
-  };
-
-  function removeBookById(bookId) {
-    books = books.filter(elem => { 
+  }
+  
+  removeBookById(bookId) {
+    this.books = this.books.filter(elem => { 
       return bookId !== elem.id;
     });
-  };
-
-  //read only
-  function getItems() {
-    return Object.freeze([...books]);
   }
 
-  //return object containing those functions (public)
-  //freeze => cant change the definition of those public functions
-  return Object.freeze({
-    add,
-    updateBookReadStatusById,
-    removeBookById,
-    getItems
-  })
-})();
+  get getItems() {
+    return [...this.books];
+  }
+}
+
+let myLibrary = new Library();
 
 // IIFE (Immediately Invoked Function Expression)
 let Book = (() => {
