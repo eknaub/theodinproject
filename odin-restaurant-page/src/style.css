@@ -174,9 +174,10 @@ footer {
 .home-main-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: start;
   align-items: center;  
   height: 100%;
+  gap: 16px;
 }
 
 .home-main-description {
@@ -184,6 +185,7 @@ footer {
   white-space: pre-line;
   font-weight: bold;
   font-size: 5rem;
+  margin-top: 5%;
 }
 
 .home-main-contact {
@@ -237,6 +239,7 @@ footer {
   display: flex;
   flex-direction: column;
   padding: 32px;
+  gap: 18px;
 }
 
 .contact-main-contact-wrapper {
@@ -256,7 +259,6 @@ footer {
 .contact-main-contact-hours {
   white-space: pre-line;
   color: white;
-  margin-bottom: 32px;
 }
 
 form {
@@ -288,12 +290,24 @@ form > input:focus {
   outline: none;
 }
 
-.contact-main-contact-visit-us {
+.contact-main-opening-hours-p {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.contact-main-contact-address-title,
+.contact-main-contact-opening-hours,
+.contact-main-contact-title {
   color: wheat;
   font-size: 1.5rem;
   letter-spacing: 3px;
   font-weight: bold;
   border-bottom: 1px solid white;
+}
+
+.contact-main-contact-title {
+  font-size: 3rem;
 }
 
 .contact-main-map {
@@ -305,6 +319,11 @@ form > input:focus {
   background-color: antiquewhite;
   color: #171717;
   font-weight: bold;
+}
+
+.wheat-colored {
+  color: wheat;
+  margin-right: 8px;
 }
 
 .inactive {

@@ -6,8 +6,6 @@ init();
 
 function init() {
   initMainPage();
-  buildContact();
-  //buildContact();
   /*
   buildLandingPage();
 
