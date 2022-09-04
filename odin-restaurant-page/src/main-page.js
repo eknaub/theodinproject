@@ -39,6 +39,16 @@ function createHeader() {
 function createNav() {
   const elem = document.createElement("nav");
 
+  window.addEventListener('scroll', () => {
+    console.log(elem.classList);
+    if(window.scrollY > 0) {
+      elem.classList.add('scrolled');
+    }
+    else {
+      elem.classList.remove('scrolled');
+    }
+  });
+
   const homeBtn = document.createElement("button");
   homeBtn.setAttribute("id", "home");
   homeBtn.textContent = "Home";
