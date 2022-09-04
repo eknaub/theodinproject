@@ -11,7 +11,7 @@ function buildLandingPage() {
 
   const shortDescription = document.createElement("div");
   shortDescription.classList.add("short-description");
-  shortDescription.textContent = "tasty and crunchy";
+  shortDescription.textContent = "Life changing steaks";
   landingPageDiv.appendChild(shortDescription);
 
   const title = document.createElement("div");

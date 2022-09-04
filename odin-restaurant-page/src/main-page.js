@@ -3,7 +3,7 @@ import buildMenu from './menu';
 import buildContact from './contact';
 
 function initMainPage() {
-  //hideLandingPage();
+  hideLandingPage();
   buildMainPage();
   setActiveButton(document.querySelector("nav > #home"));
   buildHome();
@@ -103,7 +103,7 @@ function createFooter() {
 
   const footerWrapper = document.createElement("div");
   footerWrapper.classList.add("footer-wrapper");
-  footerWrapper.textContent = "Copyright © 2022 Eduard";
+  footerWrapper.textContent = "Made by Eduard";
 
   const link = document.createElement("a");
   link.classList.add("footer-link");

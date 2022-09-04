@@ -5,8 +5,7 @@ body {
   background-color: #171717;
 }
 
-#landing-page-wrapper,
-#main {
+#landing-page-wrapper {
   /*
     Photo by <a href="https://unsplash.com/@amoonnotmoon?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Amna Akram</a> on <a href="https://unsplash.com/s/photos/steak?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   */
@@ -14,6 +13,13 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
+}
+
+#main {
+  background-image: url("./background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
 }
 
 .landing-page {
@@ -220,12 +226,14 @@ footer {
   color: white;
 }
 
-.contact-main-wrapper {
+.contact-main-wrapper,
+.menu-main-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;  
   height: 100%;
+  padding: 16px;
 }
 
 .contact-main-description {
@@ -298,7 +306,8 @@ form > input:focus {
 
 .contact-main-contact-address-title,
 .contact-main-contact-opening-hours,
-.contact-main-contact-title {
+.contact-main-contact-title,
+.menu-main-title {
   color: wheat;
   font-size: 1.5rem;
   letter-spacing: 3px;
@@ -325,6 +334,50 @@ form > input:focus {
   color: wheat;
   margin-right: 8px;
 }
+
+.menu-main-title {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 32px;
+}
+
+.menu-main-menu-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.menu-main-menu-item {
+  width: 300px;
+  height: 200px;
+  background-color: rgba(23, 23, 23, 0.85);
+  border: 1px solid wheat;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.menu-main-menu-item-title {
+  font-size: 2rem;
+  text-align: center;
+  border-bottom: 2px solid wheat;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.menu-main-menu-item-description {
+  color: white;
+}
+
+.menu-main-menu-item-price {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  min-height: 75px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: white;
+}
+
 
 .inactive {
   display: none;
