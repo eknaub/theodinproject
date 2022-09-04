@@ -74,7 +74,6 @@ function createNav() {
 }
 
 function setActiveButton(btn) {
-  console.log(btn);
   const btns = document.querySelectorAll("nav > button");
   
   btns.forEach((button) => {
