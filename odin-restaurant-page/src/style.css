@@ -1,0 +1,312 @@
+body {
+  font-family: Roboto, sans-serif;
+  margin: 0 auto;
+  padding: 0;
+  background-color: #171717;
+}
+
+#landing-page-wrapper,
+#main {
+  /*
+    Photo by <a href="https://unsplash.com/@amoonnotmoon?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Amna Akram</a> on <a href="https://unsplash.com/s/photos/steak?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  */
+  background-image: url("./background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.landing-page {
+  height: 100%;
+  width: 50%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 3rem;
+}
+
+.short-description {
+  color: white;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+}
+
+.title {
+  color: wheat;
+  font-size: 8rem;
+  text-transform: uppercase;
+  letter-spacing: 15px;
+  font-weight: bold;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+.description {
+  color: white;
+  font-size: 1rem;
+  line-height: 2;
+}
+
+.explore-button,
+.home-main-call-to-action-button,
+.contact-main-contact-form-submit {
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+  height: 50px;
+  width: 125px;
+  border: none;
+  background-color: wheat;
+  border: 1px solid #171717;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+}
+
+.explore-button:hover,
+.home-main-call-to-action-button:hover,
+.contact-main-contact-form-submit:hover {
+  color: wheat;  
+  background-color: #171717;
+  border: 1px solid wheat;
+  letter-spacing: 3px;
+}
+
+.home-main-call-to-action-button {
+  width: 175px;
+}
+
+.contact-main-contact-form-submit {
+  width: 75px;
+  height: 30px;
+}
+
+header {
+  color: wheat;
+  font-size: 4rem;
+  text-transform: uppercase;
+  letter-spacing: 15px;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid white;
+  padding: 16px;
+}
+
+nav {
+  min-height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  border-bottom: 1px solid white;
+}
+
+#home,
+#menu,
+#contact {
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 1.5rem;  
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+
+#home::after,
+#menu::after,
+#contact::after {
+  display:block;
+  content: '';
+  border-bottom: solid 3px wheat;  
+  transform: scaleX(0);  
+  transition: transform 200ms ease-in-out;
+}
+
+#home:hover::after,
+#menu:hover::after,
+#contact:hover::after {
+  transform: scaleX(1);
+}
+
+#home:active::after,  
+#menu:active::after, 
+#contact:active::after {
+  border-bottom: solid 3px wheat;  
+}
+
+#home.active,  
+#menu.active, 
+#contact.active {
+  color: wheat;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #171717;
+  color: #e5e7eb;
+  font-weight: bold;
+  min-height: 75px;
+  margin-top:auto; 
+  border-top: 1px solid white;
+}
+
+.footer-wrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.footer-link {
+  background-image: url("./githubicon.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 20px;
+  width: 20px;
+}
+
+.home-main-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;  
+  height: 100%;
+}
+
+.home-main-description {
+  color: white;
+  white-space: pre-line;
+  font-weight: bold;
+  font-size: 5rem;
+}
+
+.home-main-contact {
+  display: flex;
+  gap: 32px;
+  padding: 16px;
+}
+
+.home-main-contact-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  background-color: hsla(0, 0%, 9%, 0.8);
+  border: 1px solid wheat;
+}
+
+.home-main-contact-visit-us {
+  color: white;
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 1.5rem;
+}
+
+.home-main-contact-address {
+  white-space: pre-line;
+  color: white;
+}
+
+.home-main-contact-hours {
+  white-space: pre-line;
+  color: white;
+}
+
+.contact-main-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;  
+  height: 100%;
+}
+
+.contact-main-description {
+  color: white;
+  white-space: pre-line;
+  font-weight: bold;
+  font-size: 5rem;
+}
+
+.contact-main-contact {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+}
+
+.contact-main-contact-wrapper {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+  background-color: hsla(0, 0%, 9%, 0.8);
+  border: 1px solid wheat;
+}
+
+.contact-main-contact-address {
+  white-space: pre-line;
+  color: white;
+}
+
+.contact-main-contact-hours {
+  white-space: pre-line;
+  color: white;
+  margin-bottom: 32px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+form > legend {
+  color: wheat;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  font-weight: bold;
+  border-bottom: 1px solid white;
+}
+
+form > input {
+  border: none;
+	border-bottom: 0.125rem solid white;
+	font-size: 1rem;
+	padding-left: 0.875rem;
+	padding-top: 0.825rem;
+	padding-bottom: 0.5rem;
+  background-color: transparent;
+  color: white;
+}
+
+form > input:focus {
+  outline: none;
+}
+
+.contact-main-contact-visit-us {
+  color: wheat;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  font-weight: bold;
+  border-bottom: 1px solid white;
+}
+
+.contact-main-map {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding: 32px;
+  margin: 32px;
+  background-color: antiquewhite;
+  color: #171717;
+  font-weight: bold;
+}
+
+.inactive {
+  display: none;
+}
