@@ -1,0 +1,263 @@
+body {
+  font-family: Roboto, sans-serif;
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 250px 4fr;
+  grid-template-rows: auto 3fr;
+  min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
+}
+
+header {
+  display: flex;
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+  background-color: #171717;
+  min-height: 75px;
+}
+
+header > p {
+  margin-left: 5rem;
+}
+
+.title {
+  font-size: 2rem;
+  color: white;
+}
+
+.sidebar-title {
+  font-size: 1.5rem;
+  color: #171717;
+}
+
+.input-text {
+  font-size: 1.25rem;
+  color: #171717;
+  margin-bottom: 4px;
+}
+
+#sidebar-projects,
+#default-projects {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.orange-span {
+  color: orange;
+  margin-right: 8px;
+}
+
+.red-span {
+  color: indianred;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 8px;
+  grid-column: 1 / 1;
+  grid-row: 2 / 3;
+  background-color: orange;
+  box-shadow: 0px 0px 5px #171717;
+  overflow: auto;
+}
+
+.sidebar-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 50px;
+}
+
+#add-project {
+  background: url("../img/add.svg") no-repeat;
+}
+.edit-project {
+  background: url("../img/edit.svg") no-repeat;
+}
+.delete-project {
+  background: url("../img/delete.svg") no-repeat;
+}
+
+.scale-hover:hover {
+  transform: scale(1.25);
+}
+
+#add-project,
+.edit-project,
+.delete-project {
+  background-position: center;
+  background-size: cover;
+  height: 30px; 
+  width: 30px;
+  border: none;
+  transition: all 0.1s ease-in-out;
+}
+
+#add-project {
+  height: 50px; 
+  width: 50px;
+}
+
+.sidebar-entry-project {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  color: #171717;
+  border: 1px solid transparent;
+  padding: 4px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+
+.right-aligned-buttonbar {
+  display: flex;
+  gap: 8px;
+  margin-left: auto; 
+  margin-right: 0;
+}
+
+hr {
+  border: 1px solid #171717;
+  width: 100%;
+}
+
+.sidebar-entry {
+  background-color: transparent;
+  color: #171717;
+  border: none;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: left;
+  border : 1px solid transparent;
+  transition: all 0.25s ease-in-out;
+}
+
+.hover-element-fill:hover {
+  background-color: #171717;
+  color: orange;
+  border-radius: 8px;
+}
+
+.hover-element-border:hover {
+  border: 1px solid #171717;
+  border-radius: 8px;
+}
+
+.sidebar-entry-active {
+  background-color: #171717;
+  color: orange;
+  border-radius: 8px;
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  gap: 16px;
+}
+
+#content-project-title {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 2.5rem;
+  color: #171717;
+  font-weight: bold;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
+  background-color: #171717;
+  color: #e5e7eb;
+  font-weight: bold;
+  min-height: 75px;
+  margin-top:auto; 
+}
+
+.footer-link {
+  background-image: url("../img/githubicon.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 20px;
+  width: 20px;
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #171717;
+  padding: 8px;
+}
+
+#addProjectDialog:not([open]) {
+  display: none;
+}
+
+#addProjectDialog[open] { 
+  z-index: 1;
+  width: 20em; 
+  border: none;
+  margin: 10em auto;
+  padding: 0;
+  box-shadow: 0px 0px 5px #171717;
+}
+
+.dialog-add {
+  border: 1px solid transparent;
+  background-color: orange;
+  font-size: 1.25rem;
+  border-radius: 8px;
+}
+
+.dialog-close {
+  border: 1px solid transparent;
+  font-size: 1.25rem;
+  border-radius: 8px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+}
+
+.input-field {
+  background-color: #E2E8F0;
+  border: none;
+  height: 25px;
+  border-radius: 8px;
+  padding: 4px;
+  margin-bottom: 8px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}

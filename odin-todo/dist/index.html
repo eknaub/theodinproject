@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo</title>
+  <script src="./main.js" defer></script>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <header class="title">
+    <p><span class="orange-span">/ /</span> ToDo</p>
+  </header>
+
+  <div class="sidebar">
+    <div id="default-projects">
+      <button id="all" class="sidebar-entry hover-element-fill">All</button>
+      <button id="today" class="sidebar-entry hover-element-fill">Today</button>
+      <button id="week" class="sidebar-entry hover-element-fill">This Week</button>
+    </div>
+    <div class="sidebar-div">
+      <div id="projects-count" class="title">
+        Projects (0)
+      </div>
+      <button id="add-project" class="scale-hover"></button>
+    </div>
+    <hr>
+    <div id="sidebar-projects">
+      <!-- Generated projects go here -->
+    </div>
+    <hr>
+  </div>
+
+  <div id="content">
+    <div id="content-project-title">Project title</div>
+    <div id="content-tasks">[Checkbox for Completion / Task / Edit, Remove Buttons]</div>
+    <button>Add new Task</button>
+  </div>
+
+  <footer>
+    Made by Eduard <a href="https://github.com/raqo0" class="footer-link"></a>
+  </footer>
+
+  <dialog id="addProjectDialog">
+    <div class="dialog-header title">
+      <p><span class="orange-span">/ /</span> Add Project</p>
+      <span class="close">&times;</span>
+    </div>
+    <form action="" id="addProjectForm" method="dialog">
+      <label for="project" class="input-text">Title<span class="red-span">*</span></label>
+      <input type="text" id="dialog-project-input" class="input-field" name="project" required>
+      <hr>
+      <div class="right-aligned-buttonbar">
+        <button type="button" class="dialog-close hover-element-border">Close</button>
+        <button type="submit" class="dialog-add hover-element-fill">Add</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
