@@ -76,13 +76,13 @@ header > p {
   margin-top: 50px;
 }
 
-#add-project {
+#add-project-button {
   background: url("../img/add.svg") no-repeat;
 }
-.edit-project {
+.edit-project-button {
   background: url("../img/edit.svg") no-repeat;
 }
-.delete-project {
+.delete-project-button {
   background: url("../img/delete.svg") no-repeat;
 }
 
@@ -90,9 +90,9 @@ header > p {
   transform: scale(1.25);
 }
 
-#add-project,
-.edit-project,
-.delete-project {
+#add-project-button,
+.edit-project-button,
+.delete-project-button {
   background-position: center;
   background-size: cover;
   height: 30px; 
@@ -101,7 +101,7 @@ header > p {
   transition: all 0.1s ease-in-out;
 }
 
-#add-project {
+#add-project-button {
   height: 50px; 
   width: 50px;
 }
@@ -207,11 +207,11 @@ footer {
   padding: 8px;
 }
 
-#addProjectDialog:not([open]) {
+#dialog:not([open]) {
   display: none;
 }
 
-#addProjectDialog[open] { 
+#dialog[open] { 
   z-index: 1;
   width: 20em; 
   border: none;
@@ -220,7 +220,7 @@ footer {
   box-shadow: 0px 0px 5px #171717;
 }
 
-.dialog-add {
+.dialog-submit {
   border: 1px solid transparent;
   background-color: orange;
   font-size: 1.25rem;
@@ -260,4 +260,8 @@ form {
   color: white;
   text-decoration: none;
   cursor: pointer;
+}
+
+.hide {
+  display: none;
 }

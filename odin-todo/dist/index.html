@@ -23,7 +23,7 @@
       <div id="projects-count" class="title">
         Projects (0)
       </div>
-      <button id="add-project" class="scale-hover"></button>
+      <button id="add-project-button" class="add-project-button scale-hover"></button>
     </div>
     <hr>
     <div id="sidebar-projects">
@@ -42,19 +42,20 @@
     Made by Eduard <a href="https://github.com/raqo0" class="footer-link"></a>
   </footer>
 
-  <dialog id="addProjectDialog">
+  <dialog id="dialog">
     <div class="dialog-header title">
-      <p><span class="orange-span">/ /</span> Add Project</p>
+      <p><span class="orange-span">/ /</span> <i id="dialog-header-title"></i></p>
       <span class="close">&times;</span>
     </div>
-    <form action="" id="addProjectForm" method="dialog">
-      <label for="project" class="input-text">Title<span class="red-span">*</span></label>
-      <input type="text" id="dialog-project-input" class="input-field" name="project" required>
+    <form action="" id="project-form" method="dialog">
+      <label for="project" class="input-text"><span id="input-text">Title</span><span class="red-span">*</span></label>
+      <input type="text" id="dialog-input" class="input-field" name="project" required>
       <hr>
       <div class="right-aligned-buttonbar">
         <button type="button" class="dialog-close hover-element-border">Close</button>
-        <button type="submit" class="dialog-add hover-element-fill">Add</button>
+        <button type="submit" id="dialog-submit" class="dialog-submit hover-element-fill"></button>
       </div>
+      <input type="hidden" id="dialog-caller" name="dialog-caller" />
     </form>
   </dialog>
 </body>

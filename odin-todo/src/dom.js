@@ -16,29 +16,43 @@ class Dom {
   }
 
   initButtons() {
-    // Add Project Modal
-    let addProjectBtn = document.getElementById("add-project");
-    let dialog = document.getElementById("addProjectDialog");
+    // Modal
+    let addProjectBtn = document.getElementById("add-project-button");
+    let dialog = document.getElementById("dialog");
     let closeSpan = document.getElementsByClassName("close")[0];
     let closeDialogBtn = document.querySelector(".dialog-close");
     //
-    let form = document.getElementById("addProjectForm");
-    let formInput = document.getElementById("dialog-project-input");
+    let form = document.getElementById("project-form");
+    let formInput = document.getElementById("dialog-input");
     let allBtn = document.getElementById("all");
     let todayBtn = document.getElementById("today");
     let weekBtn = document.getElementById("week");
     let userProjects = document.querySelectorAll("#sidebar-projects > div");
-    
+
+    form.addEventListener("submit", (e) => {
+      let targetId = document.getElementById("dialog-caller").value;
+      
+      if(form.classList.contains("add-project")) {
+        this.addProject(formInput.value);
+      }
+      else if(form.classList.contains("edit-project")) {
+        let sidebarEntryProject = document.getElementById(targetId);
+        let oldProjectTitle = sidebarEntryProject.querySelector(".user-project-title").textContent;
+        let newProjectTitle = formInput.value;
+        this.editProject(oldProjectTitle, newProjectTitle, sidebarEntryProject);
+      }
+      else if(form.classList.contains("delete-project")) {
+        let sidebarEntryProject = document.getElementById(targetId);
+        this.removeProject(sidebarEntryProject);
+      }
+    });
+
     addProjectBtn.addEventListener("click", () => {
-      dialog.showModal();
-      this.clearAddProjectInputField();
+      this.showDialog(addProjectBtn);
     });
     closeSpan.addEventListener("click", () => dialog.close());
     closeDialogBtn.addEventListener("click", () => dialog.close());
-    form.addEventListener("submit", () => {
-      this.addProject(formInput.value);
-    });
-
+    
     allBtn.addEventListener("click", (e) => this.openProject(e.target));
     todayBtn.addEventListener("click", (e) => this.openProject(e.target));
     weekBtn.addEventListener("click", (e) => this.openProject(e.target));
@@ -52,9 +66,59 @@ class Dom {
       }
     });
   }
+  
+  showDialog(target) {
+    let dialog = document.getElementById("dialog");
+    let formInput = document.getElementById("dialog-input");
+    let form = document.getElementById("project-form");
+    let title = document.getElementById("dialog-header-title");
+    let submitBtn = document.getElementById("dialog-submit");
+    let inputLabel = document.getElementById("input-text");
+    
+    document.getElementById("dialog-caller").value = target.parentNode.parentNode.id;
+    form.classList = "";
+    
+    if(target.classList.contains("add-project-button")) {
+      formInput.classList.remove("hide");
+      title.textContent = "Add Project";
+      submitBtn.textContent = "Add";
+      inputLabel.textContent = "Title";
+
+      form.classList.add("add-project");
+
+      this.clearAddProjectInputField();
+      dialog.showModal();
+    }
+    else if(target.classList.contains("edit-project-button")) {
+      formInput.classList.remove("hide");
+
+      title.textContent = "Edit Project";
+      submitBtn.textContent = "Save";
+      inputLabel.textContent = "Title";
+
+      form.classList.add("edit-project");
+
+      let projectName = target.parentNode.parentNode.textContent;
+      formInput.value = projectName;
+
+      dialog.showModal();
+    }
+    else if(target.classList.contains("delete-project-button")) {
+      formInput.classList.add("hide");
+      let projectName = target.parentNode.parentNode.textContent;
+      formInput.value = projectName; //input is required, hack :)
+      title.textContent = "Delete Project";
+      submitBtn.textContent = "Delete";
+      inputLabel.textContent = `You are about to delete the project ${projectName}!`;
+
+      form.classList.add("delete-project");
+
+      dialog.showModal();
+    }
+  }
 
   clearAddProjectInputField() {
-    let formInput = document.getElementById("dialog-project-input");
+    let formInput = document.getElementById("dialog-input");
     formInput.value = "";
   }
 
@@ -65,42 +129,48 @@ class Dom {
   }
 
   addProject(projectName) {
-    this.projects.addProject(projectName);
+    let id = this.projects.addProject(projectName);
 
-    const projectsCount = document.getElementById("projects-count");
-    projectsCount.textContent = `Projects (${this.projects.projectsCount})`;
+    if(id === -1) return;
 
-    const formInput = document.getElementById("dialog-project-input");
     const userProjects = document.getElementById("sidebar-projects");
     const projectInput = document.createElement("div");
     projectInput.classList.add("sidebar-entry-project", "hover-element-fill");
-    projectInput.textContent = projectName;
+    projectInput.setAttribute("id", id);
+
+    const userProjectTitle = document.createElement("span");
+    userProjectTitle.classList.add("user-project-title");
+    userProjectTitle.textContent = projectName;
+    projectInput.appendChild(userProjectTitle);
 
     const buttonBar = document.createElement("div");
     buttonBar.classList.add("right-aligned-buttonbar");
     const editBtn = document.createElement("button");
-    editBtn.classList.add("edit-project", "scale-hover");
+    editBtn.classList.add("edit-project-button", "scale-hover");
     editBtn.type = "button";
     buttonBar.appendChild(editBtn);
     const deleteBtn = document.createElement("button");
-    deleteBtn.classList.add("delete-project", "scale-hover");
+    deleteBtn.classList.add("delete-project-button", "scale-hover");
     deleteBtn.type = "button";
     buttonBar.appendChild(deleteBtn);
     projectInput.appendChild(buttonBar);
 
-    editBtn.addEventListener("click", (e) => this.editProject(e.target));
-    deleteBtn.addEventListener("click", (e) => this.deleteProject(e.target));
+    editBtn.addEventListener("click", (e) => this.showDialog(e.target));
+    deleteBtn.addEventListener("click", (e) => this.showDialog(e.target));
     projectInput.addEventListener("click", (e) => this.openProject(e.target));
+    userProjectTitle.addEventListener("click", (e) => this.openProject(e.target));
 
     userProjects.appendChild(projectInput);
+
+    this.updateProjectsCounter();
+  }
+
+  updateProjectsCounter() {
+    const projectsCount = document.getElementById("projects-count");
+    projectsCount.textContent = `Projects (${this.projects.projectsCount})`;
   }
 
   openProject(projectButton) {
-    if(projectButton.classList.contains("edit-project") || 
-        projectButton.classList.contains("delete-project")) {
-          return;
-    }
-
     let userProjects = document.querySelectorAll("#sidebar-projects > div");
     let defaultProjects = document.querySelectorAll("#default-projects > button");
     
@@ -109,19 +179,27 @@ class Dom {
 
     let titleDom = document.getElementById("content-project-title");
     titleDom.textContent = projectButton.textContent;
-    projectButton.classList.add("sidebar-entry-active");
 
+    if(projectButton.classList.contains("sidebar-entry") ||
+        projectButton.classList.contains("sidebar-entry-project")) {
+          projectButton.classList.add("sidebar-entry-active");
+    }
+    
     //this.loadProjectContent(projectButton);
   }
 
-  editProject(projectButton) {
-    let projectName = projectButton.parentNode.parentNode.textContent;
-    console.log(`editProject ${projectName}`);
+  editProject(oldProjectTitle, newProjectTitle, sidebarEntryProject) {
+    let projectTitle = sidebarEntryProject.querySelector(".user-project-title");
+    if(!this.projects.editProject(oldProjectTitle, newProjectTitle)) return;
+    projectTitle.textContent = newProjectTitle;
   }
 
-  deleteProject(projectButton) {    
-    let projectName = projectButton.parentNode.parentNode.textContent;
-    console.log(`deleteProject ${projectName}`);
+  removeProject(sidebarEntryProject) {    
+    let projectTitle = sidebarEntryProject.querySelector(".user-project-title").textContent;
+    this.projects.removeProject(projectTitle);
+    sidebarEntryProject.remove();
+
+    this.updateProjectsCounter();
   }
 
   loadProjectContent(projectButton) {
