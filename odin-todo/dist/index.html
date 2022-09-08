@@ -34,8 +34,15 @@
 
   <div id="content">
     <div id="content-project-title">Project title</div>
-    <div id="content-tasks">[Checkbox for Completion / Task / Edit, Remove Buttons]</div>
-    <button>Add new Task</button>
+    <div class="tasks-wrapper">
+      <div id="tasks-header" class="tasks-header">
+        <p id="tasks-count" class="tasks-count">Tasks (0)</p>
+        <button id="add-task-button" class="add-task-button scale-hover"></button>
+      </div>
+      <div id="content-tasks">
+        <!-- Generated tasks go here -->
+      </div>
+    </div>
   </div>
 
   <footer>
@@ -47,15 +54,26 @@
       <p><span class="orange-span">/ /</span> <i id="dialog-header-title"></i></p>
       <span class="close">&times;</span>
     </div>
+    <div class="dialog-description hide">
+    </div>
     <form action="" id="project-form" method="dialog">
-      <label for="project" class="input-text"><span id="input-text">Title</span><span class="red-span">*</span></label>
-      <input type="text" id="dialog-input" class="input-field" name="project" required>
+      <div class="dialog-add-project-content hide">
+        <label for="project" class="input-text"><span id="input-text">Title</span></label>
+        <input type="text" id="dialog-input-project-name" class="input-field" name="project">
+      </div>
+      <div class="dialog-add-task-content hide">
+        <label for="task" class="input-text"><span id="input-text">Title</span></label>
+        <input type="text" id="dialog-input-task-name" class="input-field" name="task">
+        <label for="description" class="input-text"><span id="input-text">Description</span></label>
+        <input type="text" id="dialog-input-description" class="input-field" name="description">
+        <label for="duedate" class="input-text"><span id="input-text">Due date</span></label>
+        <input type="date" id="dialog-input-duedate" class="input-field" name="duedate">
+      </div>
       <hr>
       <div class="right-aligned-buttonbar">
         <button type="button" class="dialog-close hover-element-border">Close</button>
         <button type="submit" id="dialog-submit" class="dialog-submit hover-element-fill"></button>
       </div>
-      <input type="hidden" id="dialog-caller" name="dialog-caller" />
     </form>
   </dialog>
 </body>

@@ -1,18 +1,18 @@
 "use strict";
 
 class Project {
-  constructor (title) {
+  constructor (title, id) {
     this.title = title;
-    this.todos = [];
+    this.id = id;
+    this.tasks = [];
   }
 
-  addTodo(newTodo) {
-    if(this.todos.find(todo => newTodo.title === todo.title)) return;
-    this.todos.push(newTodo);
+  addTask(newTask) {
+    this.tasks.push(newTask);
   }
 
-  removeTodo(selectedTodo) {
-    this.todos = this.todos.filter(todo => todo.title !== selectedTodo.title);
+  removeTask(selectedTask) {
+    this.tasks = this.tasks.filter(task => task.title !== selectedTask.title);
   }
 };
 

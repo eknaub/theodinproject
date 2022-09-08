@@ -1,12 +1,13 @@
 "use strict";
 
-class Todo {
-  constructor(title, description, duedate) {
+class Task {
+  constructor(title, description, duedate, id) {
     this.title = title;
     this.description = description;
     this.duedate = duedate;
+    this.id = id;
     this.completed = false;
   }
 }
 
-export default Todo;
+export default Task;

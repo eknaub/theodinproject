@@ -79,10 +79,16 @@ header > p {
 #add-project-button {
   background: url("../img/add.svg") no-repeat;
 }
-.edit-project-button {
+#add-task-button {
+  background: url("../img/add.svg") no-repeat;
+}
+
+.edit-project-button,
+.edit-task-button {
   background: url("../img/edit.svg") no-repeat;
 }
-.delete-project-button {
+.remove-project-button,
+.remove-task-button {
   background: url("../img/delete.svg") no-repeat;
 }
 
@@ -92,7 +98,10 @@ header > p {
 
 #add-project-button,
 .edit-project-button,
-.delete-project-button {
+.remove-project-button,
+#add-task-button,
+.edit-task-button,
+.remove-task-button {
   background-position: center;
   background-size: cover;
   height: 30px; 
@@ -119,11 +128,62 @@ header > p {
   transition: all 0.25s ease-in-out;
 }
 
+.content-task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  color: #171717;
+  border-bottom: 1px solid black;
+  gap: 10rem;
+  transition: all 0.25s ease-in-out;
+}
+
+.content-task-left, 
+.content-task-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.content-task:hover {
+  background-color: #ddd;
+}
+
+.task-done {
+  background-color: #ddd;
+}
+
+.tasks-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.25rem;
+  color: #171717;
+  padding: 8px;
+  border-bottom: 1px solid #171717;
+}
+
+
+.tasks-wrapper {
+  min-width: 30vw;
+}
+
+.task-description {
+  font-weight: normal;
+}
+
+.tasks-count {
+  margin: 0;
+  padding: 0;
+}
+
 .right-aligned-buttonbar {
   display: flex;
+  align-items: center;
+  justify-content: end;
   gap: 8px;
-  margin-left: auto; 
-  margin-right: 0;
+  padding: 4px 8px;
 }
 
 hr {
@@ -213,7 +273,7 @@ footer {
 
 #dialog[open] { 
   z-index: 1;
-  width: 20em; 
+  width: 25em; 
   border: none;
   margin: 10em auto;
   padding: 0;
@@ -233,10 +293,16 @@ footer {
   border-radius: 8px;
 }
 
-form {
+.dialog-description {
+  padding: 9px 16px;
+  font-size: 1.25rem;
+}
+
+.dialog-add-project-content,
+.dialog-add-task-content {
   display: flex;
   flex-direction: column;
-  padding: 18px;
+  padding: 8px 16px;
 }
 
 .input-field {
