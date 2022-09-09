@@ -11,9 +11,9 @@ class ProjectList {
     this.projects = [];
   }
 
-  addProject(newProjectTitle) {
-    if(this.projects.find(project => newProjectTitle === project.title)) return;
-    let project = new Project(newProjectTitle, this.projectId);
+  addProject(newProjectName) {
+    if(this.projects.find(project => newProjectName === project.title)) return;
+    let project = new Project(newProjectName, this.projectId);
     this.projects.push(project);
     this.projectId++;
     return project;
@@ -23,11 +23,11 @@ class ProjectList {
     this.projects = this.projects.filter(project => project.title !== projectName);
   }
 
-  editProject(oldProjectTitle, newProjectTitle) {
-    if(this.projects.find(project => newProjectTitle === project.title)) return false;
+  editProject(oldProjectName, newProjectName) {
+    if(this.projects.find(project => newProjectName === project.title)) return false;
     this.projects = this.projects.map(project => {
-      if(project.title === oldProjectTitle) {
-        project.title = newProjectTitle;
+      if(project.title === oldProjectName) {
+        project.title = newProjectName;
       }
 
       return project;
@@ -35,11 +35,11 @@ class ProjectList {
     return true;
   }
 
-  addTaskToProject(projectName, taskName, taskDesc, taskDueDate) {
+  addTaskToProject(projectName, taskName, taskDesc) {
     let task;
     this.projects = this.projects.map(project => {
       if(project.title === projectName) {
-        task = new Task(taskName, taskDesc, taskDueDate, this.taskId);
+        task = new Task(taskName, taskDesc, this.taskId);
         this.taskId++;
         project.addTask(task);
       }
@@ -54,24 +54,23 @@ class ProjectList {
     return pr.tasks.length;
   }
 
-  removeTaskForProjectById(projectName, id) {
+  removeTaskForProjectById(projectName, taskid) {
     this.projects = this.projects.map(project => {
       if(project.title === projectName) {
-        project.tasks = project.tasks.filter(task => task.id !== id);
+        project.tasks = project.tasks.filter(task => task.id !== taskid);
       }
 
       return project;
     })
   }
 
-  editTaskForProjectById(projectName, id, taskName, taskDesc, taskDueDate) {
+  editTaskForProjectById(projectName, taskId, taskName, taskDesc) {
     let editedTask;
     let pr = this.projects.find(project => projectName === project.title);
     pr.tasks = pr.tasks.map(task => {
-      if(task.id === id) {
+      if(task.id === taskId) {
         task.title = taskName;
         task.description = taskDesc;
-        task.dueDate = taskDueDate;
         editedTask = task;
       }
 
@@ -80,11 +79,21 @@ class ProjectList {
     return editedTask;
   }
 
-
-  getTaskForProjectById(projectName, id) {
+  getTaskForProjectById(projectName, taskId) {
     let pr = this.projects.find(project => projectName === project.title);
-    let task = pr.tasks.filter(task => task.id === id);
+    let task = pr.tasks.filter(task => task.id === taskId);
     return task[0];
+  }
+
+  changeCompletionStateForTaskById(projectName, taskId, state) {
+    let pr = this.projects.find(project => projectName === project.title);
+    pr.tasks = pr.tasks.map(task => {
+      if(task.id === taskId) {
+        task.completed = state;
+      }
+
+      return task;
+    })
   }
 
   getTasksForProject(projectName) {

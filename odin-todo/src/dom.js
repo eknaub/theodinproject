@@ -12,7 +12,6 @@ class Dom {
 
   initDom() {
     this.addDefaultProjects();
-    this.loadProjects();
     this.initButtons();
     this.openProject(document.getElementById("1-Test1"));
   }
@@ -29,11 +28,7 @@ class Dom {
     let formInputProjectName = document.getElementById("dialog-input-project-name");
     let formInputTaskName = document.getElementById("dialog-input-task-name");
     let formInputTaskDesc = document.getElementById("dialog-input-description");
-    let formInputTaskDueDate = document.getElementById("dialog-input-duedate");
-    let allBtn = document.getElementById("all");
-    let todayBtn = document.getElementById("today");
-    let weekBtn = document.getElementById("week");
-   
+
     form.addEventListener("submit", () => {
       if(form.classList.contains("add-project")) {
         if(formInputProjectName.value === "") return;
@@ -43,44 +38,40 @@ class Dom {
         this.addProject(pr);
       }
       else if(form.classList.contains("edit-project")) {
-        const sidebarEntryProject = document.getElementById(this.selectedProjectId);
+        const sidebarEntryProject = this.getCurrentSelectedProjectDomElement();
         const oldProjectTitle = sidebarEntryProject.querySelector(".user-project-title").textContent;
         const newProjectTitle = formInputProjectName.value;
         if(!this.projects.editProject(oldProjectTitle, newProjectTitle)) return;
         this.editProject(newProjectTitle, sidebarEntryProject);
       }
       else if(form.classList.contains("remove-project")) {
-        const sidebarEntryProject = document.getElementById(this.selectedProjectId);
+        const sidebarEntryProject = this.getCurrentSelectedProjectDomElement();
         const projectTitle = sidebarEntryProject.textContent;
         this.projects.removeProject(projectTitle);
         this.removeProject(sidebarEntryProject);
-        this.openProject(document.getElementById("all"));
+        this.resetContent();
       }
       else if(form.classList.contains("add-task")) {
         if(formInputTaskName.value === "") return;
-        const projectName = document.getElementById(this.selectedProjectId).textContent;
+        const projectName = this.getCurrentSelectedProjectName();
         const taskName = formInputTaskName.value;
         const taskDesc = formInputTaskDesc.value; 
-        const taskDueDate = formInputTaskDueDate.value;
-        const task = this.projects.addTaskToProject(projectName, taskName, taskDesc, taskDueDate);
+        const task = this.projects.addTaskToProject(projectName, taskName, taskDesc);
         this.addTask(task);
       }
       else if(form.classList.contains("edit-task")) {
-        const task = document.getElementById(this.selectedTaskId);
-        const idList = task.id.split("-");
-        const id = Number(idList[0]);
-        const projectName = idList[1];
+        const task = this.getCurrentSelectedTaskDomElement();
+        const id = this.getCurrentSelectedTaskId();
+        const projectName = this.getCurrentSelectedTaskProjectName();
         const taskName = formInputTaskName.value;
         const taskDesc = formInputTaskDesc.value; 
-        const taskDueDate = formInputTaskDueDate.value;
-        const editedTask = this.projects.editTaskForProjectById(projectName, id, taskName, taskDesc, taskDueDate);
+        const editedTask = this.projects.editTaskForProjectById(projectName, id, taskName, taskDesc);
         this.editTask(editedTask, task);
       }
       else if(form.classList.contains("remove-task")) {
-        const task = document.getElementById(this.selectedTaskId);
-        const idList = task.id.split("-");
-        const id = Number(idList[0]);
-        const projectName = idList[1];
+        const task = this.getCurrentSelectedTaskDomElement();
+        const id = this.getCurrentSelectedTaskId();
+        const projectName = this.getCurrentSelectedTaskProjectName();
         this.projects.removeTaskForProjectById(projectName, id);
         this.removeTask(task);
       }
@@ -95,10 +86,6 @@ class Dom {
     closeSpan.addEventListener("click", () => dialog.close());
     closeDialogBtn.addEventListener("click", () => dialog.close());
     
-    allBtn.addEventListener("click", (e) => this.openProject(e.target));
-    todayBtn.addEventListener("click", (e) => this.openProject(e.target));
-    weekBtn.addEventListener("click", (e) => this.openProject(e.target));
-    
     window.addEventListener("click", (e) => {
       if (e.target == dialog) {
         dialog.close();
@@ -111,7 +98,6 @@ class Dom {
     let formInputProjectName = document.getElementById("dialog-input-project-name");
     let formInputTaskName = document.getElementById("dialog-input-task-name");
     let formInputTaskDesc = document.getElementById("dialog-input-description");
-    let formInputTaskDueDate = document.getElementById("dialog-input-duedate");
     let form = document.getElementById("project-form");
     let title = document.getElementById("dialog-header-title");
     let submitBtn = document.getElementById("dialog-submit");
@@ -174,15 +160,12 @@ class Dom {
 
       form.classList.add("edit-task");
 
-      const task = document.getElementById(this.selectedTaskId);
-      const idList = task.id.split("-");
-      const id = Number(idList[0]);
-      const projectName = idList[1];
+      const id = this.getCurrentSelectedTaskId();
+      const projectName = this.getCurrentSelectedProjectName();
       const selectedTask = this.projects.getTaskForProjectById(projectName, id);
 
       formInputTaskName.value = selectedTask.title;
       formInputTaskDesc.value = selectedTask.description;
-      formInputTaskDueDate.value = selectedTask.dueDate;
 
       dialog.showModal();
     }
@@ -206,8 +189,6 @@ class Dom {
     formInputTaskName.value = "";
     let formInputTaskDesc = document.getElementById("dialog-input-description");
     formInputTaskDesc.value = "";
-    let formInputTaskDueDate = document.getElementById("dialog-input-duedate");
-    formInputTaskDueDate.value = "";
   }
 
   addDefaultProjects() {
@@ -244,6 +225,7 @@ class Dom {
     buttonBar.appendChild(removeBtn);
     projectInput.appendChild(buttonBar);
 
+    buttonBar.addEventListener("click", (e) => e.stopPropagation());
     projectInput.addEventListener("click", (e) => {
       this.openProject(e.target);
     });
@@ -274,35 +256,21 @@ class Dom {
 
   updateTaskCounter() {
     const projectsCount = document.getElementById("tasks-count");
-    const projectName = document.getElementById(this.selectedProjectId).textContent;
-    const count = this.projects.getTaskCountForProject(projectName);
+    const projectName = this.getCurrentSelectedProjectName();
+    let count = this.projects.getTaskCountForProject(projectName);
     projectsCount.textContent = `Tasks (${count})`;
   }
 
   openProject(projectButton) {
     this.selectedProjectId = projectButton.id;
+
     const userProjects = document.querySelectorAll("#sidebar-projects > div");
-    const defaultProjects = document.querySelectorAll("#default-projects > button");
-    
     userProjects.forEach(elem => elem.classList.remove("sidebar-entry-active"));
-    defaultProjects.forEach(elem => elem.classList.remove("sidebar-entry-active"));
 
     const titleDom = document.getElementById("content-project-title");
     titleDom.textContent = projectButton.textContent;
-
-    const addTask = document.getElementById("add-task-button");
     
-    if(this.selectedProjectId === 'all' ||
-        this.selectedProjectId === 'today' ||
-        this.selectedProjectId === 'week') {
-          addTask.classList.add("hide");
-    }
-    else {
-      addTask.classList.remove("hide");
-    }
-    
-    if(projectButton.classList.contains("sidebar-entry") ||
-        projectButton.classList.contains("sidebar-entry-project")) {
+    if(projectButton.classList.contains("sidebar-entry-project")) {
           projectButton.classList.add("sidebar-entry-active");
     }
     
@@ -320,13 +288,20 @@ class Dom {
   }
 
   addTask(task) {
-    let projectName = document.getElementById(this.selectedProjectId).textContent;
+    let projectName = this.getCurrentSelectedProjectName();
     let projectTasks = document.getElementById("content-tasks");
     let id = `${task.id}-${projectName}-${task.title}`
 
     let taskWrapper = document.createElement("div");
     taskWrapper.classList.add("content-task");
     taskWrapper.setAttribute("id", id);
+
+    if(task.completed) {
+      taskWrapper.classList.add("task-done");
+    }
+    else {
+      taskWrapper.classList.remove("task-done");
+    }
 
     let leftSide = document.createElement("div");
     leftSide.classList.add("content-task-left");
@@ -348,25 +323,33 @@ class Dom {
 
     let rightSide = document.createElement("div");
     rightSide.classList.add("content-task-right");
-    let dueDate = document.createElement("p");
-    dueDate.classList.add("task-duedate");
-    dueDate.textContent = task.dueDate;
     let editBtn = document.createElement("button");
     editBtn.classList.add("edit-task-button", "scale-hover");
     let removeBtn = document.createElement("button");
     removeBtn.classList.add("remove-task-button", "scale-hover");
-    rightSide.appendChild(dueDate);
     rightSide.appendChild(editBtn);
     rightSide.appendChild(removeBtn);
 
+    taskTitle.addEventListener("click", (e) => {
+      e.stopPropagation()
+      this.selectedTaskId = id;
+      this.changeTaskCompletionDivPressed(e.target.parentNode);
+    });
+    taskDesc.addEventListener("click", (e) => {
+      e.stopPropagation()
+      this.selectedTaskId = id;
+      this.changeTaskCompletionDivPressed(e.target.parentNode);
+    });
     completionCheckbox.addEventListener("change", (e) => {
       e.stopPropagation();
+      this.selectedTaskId = id;
       this.changeTaskCompletion(e.target.checked);
     })
     completionCheckbox.addEventListener("click", (e) => {
       e.stopPropagation();
     })
     taskWrapper.addEventListener("click", (e) => {
+      this.selectedTaskId = id;
       this.changeTaskCompletionDivPressed(e.target);
     });
     editBtn.addEventListener("click", (e) => {
@@ -395,11 +378,19 @@ class Dom {
     this.changeTaskCompletion(checkbox.checked);
   }
 
-  changeTaskCompletion(state) {
-    //TODO
-    //1. in projectlist state ändern
-    //2. Task name und desc crossen
-    //3. background auf .task-done klasse
+  changeTaskCompletion(completionState) {    
+    let task = this.getCurrentSelectedTaskDomElement();
+    let id = this.getCurrentSelectedTaskId();
+    let projectName = this.getCurrentSelectedTaskProjectName();
+
+    this.projects.changeCompletionStateForTaskById(projectName, id, completionState);
+
+    if(completionState) {
+      task.classList.add("task-done");
+    }
+    else {
+      task.classList.remove("task-done");
+    }
   }
 
   editTask(editedTask, task) {
@@ -407,8 +398,6 @@ class Dom {
     taskTitle.textContent = editedTask.title;
     let taskDesc = task.querySelector(".task-description");
     taskDesc.textContent = editedTask.description;
-    let taskDueDate = task.querySelector(".task-duedate");
-    taskDueDate.textContent = editedTask.dueDate;
   }
 
   removeTask(taskDom) {
@@ -418,29 +407,12 @@ class Dom {
 
   loadProjectContent(projectButton) {
     this.clearTasks();
-    if(projectButton.id === "all") {
-      //TODO
-      //Projectlist neue Methode wo alle Tasks holt
-      //Dann mit Task einfach reinscheppern
-      console.log("all");
-    }
-    else if(projectButton.id === "today") {
-      //TODO
-      //DueDate fixen (vlt)
-      console.log("today");
-    }
-    else if(projectButton.id === "week") {
-      console.log("week");
-      //TODO
-      //DueDate fixen (vlt)
-    }
-    else {
-      let projectName = projectButton.textContent;
-      let tasks = this.projects.getTasksForProject(projectName);
-      tasks.forEach(elem => {
-        this.addTask(elem);
-      })
-    }
+    
+    let projectName = projectButton.textContent;
+    let tasks = this.projects.getTasksForProject(projectName);
+    tasks.forEach(elem => {
+      this.addTask(elem);
+    })
   }
 
   clearTasks() {
@@ -450,10 +422,37 @@ class Dom {
     projectsCount.textContent = `Tasks (0)`;
   }
 
-  loadProjects() {
-    //TODO
-    //1. localStorage
-    //2. Alle Projekte inkl. Tasks laden
+  resetContent() {
+    let projectTitle = document.getElementById("content-project-title");
+    projectTitle.textContent = "Nothing selected :(";
+    let projectTasks = document.getElementById("content-tasks");
+    projectTasks.innerHTML = "";
+    const projectsCount = document.getElementById("tasks-count");
+    projectsCount.textContent = `Tasks (0)`;
+  }
+
+  getCurrentSelectedProjectName() {
+    return document.getElementById(this.selectedProjectId).textContent;
+  }
+
+  getCurrentSelectedProjectDomElement() {
+    return document.getElementById(this.selectedProjectId);
+  }
+
+  getCurrentSelectedTaskDomElement() {
+    return document.getElementById(this.selectedTaskId);
+  }
+
+  getCurrentSelectedTaskId() {
+    const task = this.getCurrentSelectedTaskDomElement();
+    const idList = task.id.split("-");
+    return Number(idList[0]);
+  }
+
+  getCurrentSelectedTaskProjectName() {
+    const task = this.getCurrentSelectedTaskDomElement();
+    const idList = task.id.split("-");
+    return idList[1];
   }
 }
 
