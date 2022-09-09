@@ -1,4 +1,4 @@
-import Dom from "./dom";
+import Dom from './dom';
 
-let dom = new Dom();
+const dom = new Dom();
 document.addEventListener('DOMContentLoaded', () => dom.initDom());

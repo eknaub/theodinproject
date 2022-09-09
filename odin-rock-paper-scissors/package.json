@@ -1,5 +1,5 @@
 {
-  "name": "odin-todo",
+  "name": "odin-rock-paper-scissors",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,8 +12,6 @@
   "devDependencies": {
     "eslint": "^8.23.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0"
+    "eslint-plugin-import": "^2.26.0"
   }
 }

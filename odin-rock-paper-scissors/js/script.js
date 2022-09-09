@@ -1,12 +1,14 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable no-use-before-define */
+
 const gameScreen = document.querySelector('.game-screen');
-const btnsDiv = document.querySelector('.player-selection');
 const btns = document.querySelectorAll('.player-selection-btn');
 btns.forEach((button) => {
   const playerSelection = button.classList[0];
-  button.addEventListener('click', function() {
-    playRound(playerSelection)
+  button.addEventListener('click', () => {
+    playRound(playerSelection);
   });
-})
+});
 const result = document.querySelector('.result');
 const score = document.querySelector('.score');
 
@@ -33,13 +35,13 @@ function restartGame() {
 }
 
 function showGameScreen() {
-  winScreen.style.display = "none";
-  gameScreen.style.display = "block";
+  winScreen.style.display = 'none';
+  gameScreen.style.display = 'block';
 }
 
 function showResultScreen() {
-  winScreen.style.display = "block";
-  gameScreen.style.display = "none";
+  winScreen.style.display = 'block';
+  gameScreen.style.display = 'none';
 }
 
 function resetScores() {
@@ -47,11 +49,11 @@ function resetScores() {
   computerWins = 0;
   result.textContent = '';
   score.textContent = `Score: Computer ${computerWins} - Player ${playerWins}`;
-  highlightComputerChoice(''); //unhighlights all computer choices, lazy mode
+  highlightComputerChoice(''); // unhighlights all computer choices, lazy mode
 }
 
 function getComputerChoice() {
-  const choices = new Array('rock', 'paper', 'scissors');
+  const choices = ['rock', 'paper', 'scissors'];
   const choice = Math.floor((Math.random() * 3));
 
   return choices[choice];
@@ -63,31 +65,26 @@ function playRound(playerSelection) {
 
   highlightComputerChoice(cs);
 
-  const computerRockBtn = document.querySelector('.rock.computer-selection-btn');
-  const computerPaperBtn = document.querySelector('.paper.computer-selection-btn');
-  const computerScissorsBtn = document.querySelector('.scissors.computer-selection-btn');
+  const playerWon = checkIfPlayerWon(ps, cs);
 
-  const playerWon = checkIfPlayerWon(ps,cs);
-
-  if(playerWon != undefined) {
+  if (playerWon !== undefined) {
+    // eslint-disable-next-line no-unused-expressions, no-plusplus
     playerWon ? playerWins++ : computerWins++;
   }
-  
-  if(playerWins < MAXWINS && computerWins < MAXWINS) {
+
+  if (playerWins < MAXWINS && computerWins < MAXWINS) {
     score.textContent = `Score: Computer ${computerWins} - Player ${playerWins}`;
     result.textContent = `Result: ${buildResultMessage(playerWon, ps, cs)}`;
-  }
-  else {
+  } else {
     showWinner();
   }
 }
 
 function highlightComputerChoice(computerChoice) {
   computerBtns.forEach((button) => {
-    if(computerChoice === button.classList[0]) {
+    if (computerChoice === button.classList[0]) {
       button.classList.add('computer-selection-active');
-    }
-    else {
+    } else {
       button.classList.remove('computer-selection-active');
     }
   });
@@ -95,10 +92,9 @@ function highlightComputerChoice(computerChoice) {
 
 function showWinner() {
   showResultScreen();
-  if(playerWins === MAXWINS) {
+  if (playerWins === MAXWINS) {
     winner.textContent = 'Player won! :)';
-  }
-  else {
+  } else {
     winner.textContent = 'Computer won! :(';
   }
 }
@@ -106,37 +102,31 @@ function showWinner() {
 function checkIfPlayerWon(ps, cs) {
   let playerWon = false;
 
-  switch(ps) {
+  switch (ps) {
     case 'rock':
-      if(cs == 'scissors') {
+      if (cs === 'scissors') {
         playerWon = true;
-      }
-      else if (cs == 'paper') {
+      } else if (cs === 'paper') {
         playerWon = false;
-      }
-      else {
+      } else {
         playerWon = undefined;
       }
       break;
     case 'paper':
-      if(cs == 'rock') {
+      if (cs === 'rock') {
         playerWon = true;
-      }
-      else if (cs == 'scissors') {
+      } else if (cs === 'scissors') {
         playerWon = false;
-      }
-      else {
+      } else {
         playerWon = undefined;
       }
       break;
     case 'scissors':
-      if(cs == 'paper') {
+      if (cs === 'paper') {
         playerWon = true;
-      }
-      else if (cs == 'rock') {
+      } else if (cs === 'rock') {
         playerWon = false;
-      }
-      else {
+      } else {
         playerWon = undefined;
       }
       break;
@@ -148,14 +138,12 @@ function checkIfPlayerWon(ps, cs) {
 }
 
 function buildResultMessage(playerWin, playerSelection, computerSelection) {
-  if(playerWin == undefined) {
-    return `It\'s a tie with ${playerSelection}!`;
+  if (playerWin === undefined) {
+    return `It's a tie with ${playerSelection}!`;
   }
 
-  if(playerWin) {
-    return `You win! Player\'s ${playerSelection} beats Computer\'s ${computerSelection}.`;
+  if (playerWin) {
+    return `You win! Player's ${playerSelection} beats Computer's ${computerSelection}.`;
   }
-  else {
-    return `You lose! Computer\'s ${computerSelection} beats Player\'s ${playerSelection}.`;
-  }
+  return `You lose! Computer's ${computerSelection} beats Player's ${playerSelection}.`;
 }

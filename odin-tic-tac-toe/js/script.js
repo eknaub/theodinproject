@@ -1,32 +1,35 @@
-"use strict";
+/* eslint-disable linebreak-style */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-use-before-define */
+/* eslint-disable consistent-return */
 
 const GameModeEnum = {
   twoPlayer: 'twoPlayer',
-  computer: 'computer'
-}
+  computer: 'computer',
+};
 
 function Player(playerSign) {
   const sign = playerSign;
-  
+
   function getSign() {
     return Object.freeze(sign);
   }
 
-  return { getSign };  
-};
+  return { getSign };
+}
 
 function Computer(computerSign) {
   const sign = computerSign;
-  
-  function getSign() {    
+
+  function getSign() {
     return Object.freeze(sign);
   }
 
-  return { getSign };  
+  return { getSign };
 }
 
 const gameBoard = (() => {
-  /* 
+  /*
     Indizes
       0 1 2
       3 4 5
@@ -35,70 +38,76 @@ const gameBoard = (() => {
   let board = new Array(9);
 
   function isFieldEmpty(index) {
-    if(board[index] === undefined) return true;
+    if (board[index] === undefined) return true;
     return false;
   }
 
   function setField(index, sign) {
-    if(index > board.length) return false;
-    if(!isFieldEmpty(index)) return false;
-    
+    if (index > board.length) return false;
+    if (!isFieldEmpty(index)) return false;
+
     board[index] = sign;
     return true;
   }
 
   function getField(index) {
-    if(index = board.length) return;
+    if (index === board.length) return;
     return Object.freeze(board[index]);
   }
 
   function getRandomEmptyField() {
-    let emptyFieldsArr = [];
-    for(let i = 0; i < board.length; i++) {
-      if(board[i] === undefined) {
+    const emptyFieldsArr = [];
+    for (let i = 0; i < board.length; i += 1) {
+      if (board[i] === undefined) {
         emptyFieldsArr.push(i);
       }
     }
-    //get random empty field index
-    let idx = emptyFieldsArr[Math.floor(Math.random()*emptyFieldsArr.length)];
+    // get random empty field index
+    const idx = emptyFieldsArr[Math.floor(Math.random() * emptyFieldsArr.length)];
     return idx;
   }
 
   function resetBoard() {
     board = new Array(9);
   }
-/* 
+  /*
     Indizes
       0 1 2
       3 4 5
       6 7 8
   */
   function checkWinner(sign) {
-    if( //Rows
-      (board[0] === sign && board[1] === sign && board[2] === sign) ||
-       (board[3] === sign && board[4] === sign && board[5] === sign) ||
-       (board[6] === sign && board[7] === sign && board[8] === sign) ||
-       //Columns
-       (board[0] === sign && board[3] === sign && board[6] === sign) ||
-       (board[1] === sign && board[4] === sign && board[7] === sign) ||
-       (board[2] === sign && board[5] === sign && board[8] === sign) ||
-       //Diagonals
-       (board[0] === sign && board[4] === sign && board[8] === sign) ||
-       (board[2] === sign && board[4] === sign && board[6] === sign)) {
+    if ( // Rows
+      (board[0] === sign && board[1] === sign && board[2] === sign)
+       || (board[3] === sign && board[4] === sign && board[5] === sign)
+       || (board[6] === sign && board[7] === sign && board[8] === sign)
+       // Columns
+       || (board[0] === sign && board[3] === sign && board[6] === sign)
+       || (board[1] === sign && board[4] === sign && board[7] === sign)
+       || (board[2] === sign && board[5] === sign && board[8] === sign)
+       // Diagonals
+       || (board[0] === sign && board[4] === sign && board[8] === sign)
+       || (board[2] === sign && board[4] === sign && board[6] === sign)) {
       return true;
     }
     return false;
   }
-  
-  return Object.freeze({setField, getField, resetBoard, checkWinner, getRandomEmptyField});
+
+  return Object.freeze({
+    setField,
+    getField,
+    resetBoard,
+    checkWinner,
+    getRandomEmptyField,
+  });
 })();
 
 const displayController = (() => {
-  let gameboardDiv = document.querySelector('.gameboard');
-  let chooseEnemyDiv = document.querySelector('.choose-enemy');
-  let message = document.querySelector('.message');
-  let markButtons = document.querySelectorAll('.row button');
-  let startBtn = document.querySelector('.startBtn');
+  const gameboardDiv = document.querySelector('.gameboard');
+  const chooseEnemyDiv = document.querySelector('.choose-enemy');
+  const message = document.querySelector('.message');
+  const markButtons = document.querySelectorAll('.row button');
+  const startBtn = document.querySelector('.startBtn');
   startBtn.addEventListener('click', () => {
     showPlayerTurn('X');
     markButtons.forEach((btn) => {
@@ -107,12 +116,12 @@ const displayController = (() => {
     deactivateStartButton();
   });
 
-  let resetBtn = document.querySelector('.resetBtn');
+  const resetBtn = document.querySelector('.resetBtn');
   resetBtn.addEventListener('click', () => {
     gameController.resetGame();
   });
 
-  let backBtn = document.querySelector('.backBtn');
+  const backBtn = document.querySelector('.backBtn');
   backBtn.addEventListener('click', () => {
     gameboardDiv.classList.add('inactive');
     chooseEnemyDiv.classList.remove('inactive');
@@ -123,7 +132,7 @@ const displayController = (() => {
     activateStartButton();
   });
 
-  let playerBtn = document.querySelector('.playerBtn');
+  const playerBtn = document.querySelector('.playerBtn');
   playerBtn.addEventListener('click', () => {
     gameboardDiv.classList.remove('inactive');
     chooseEnemyDiv.classList.add('inactive');
@@ -132,8 +141,8 @@ const displayController = (() => {
     gameController.initPlayerTwo('twoPlayer');
     activateStartButton();
   });
-  
-  let aiBtn = document.querySelector('.aiBtn');
+
+  const aiBtn = document.querySelector('.aiBtn');
   aiBtn.addEventListener('click', () => {
     gameboardDiv.classList.remove('inactive');
     chooseEnemyDiv.classList.add('inactive');
@@ -170,22 +179,31 @@ const displayController = (() => {
   }
 
   function showPlayerTurn(sign) {
-    message.textContent = `It\'s Player ${sign}\'s turn!`;
+    message.textContent = `It's Player ${sign}'s turn!`;
   }
 
   function showComputerTurn() {
-    message.textContent = `It\'s Computer\'s turn!`;
+    message.textContent = 'It\'s Computer\'s turn!';
   }
 
   function showComputerWinner() {
-    message.textContent = `Computer won!`;
+    message.textContent = 'Computer won!';
   }
 
   function showDraw() {
-    message.textContent = `It\'s a draw!`;
+    message.textContent = 'It\'s a draw!';
   }
-  
-  return Object.freeze({ setFieldDom, showPlayerWinner, resetDom, showPlayerTurn, showDraw, showComputerTurn, showComputerWinner });
+
+  // eslint-disable-next-line max-len
+  return Object.freeze({
+    setFieldDom,
+    showPlayerWinner,
+    resetDom,
+    showPlayerTurn,
+    showDraw,
+    showComputerTurn,
+    showComputerWinner,
+  });
 })();
 
 const gameController = (() => {
@@ -197,74 +215,67 @@ const gameController = (() => {
 
   const setGameMode = (gm) => {
     gameMode = gm;
-  }
+  };
 
   const initPlayerTwo = (gm) => {
-    if(gm === GameModeEnum.twoPlayer) {
+    if (gm === GameModeEnum.twoPlayer) {
       playerTwo = new Player('O');
-    }
-    else if (gm === GameModeEnum.computer) {
+    } else if (gm === GameModeEnum.computer) {
       playerTwo = new Computer('O');
     }
-  }
+  };
 
-  const isRoundOver = () => {
-    return Object.freeze(roundOver);
-  }
+  const isRoundOver = () => Object.freeze(roundOver);
 
   const playRound = (e) => {
-    if(roundOver) return;
+    if (roundOver) return;
 
-    let btn = e.target;
-    let idx = btn.id;
-    let sign = round%2 === 0 ? playerTwo.getSign() : playerOne.getSign();
-    let nextSign = (round+1)%2 === 0 ? playerTwo.getSign() : playerOne.getSign();
+    const btn = e.target;
+    const idx = btn.id;
+    const sign = round % 2 === 0 ? playerTwo.getSign() : playerOne.getSign();
+    const nextSign = (round + 1) % 2 === 0 ? playerTwo.getSign() : playerOne.getSign();
 
-    if(!gameBoard.setField(idx, sign)) return;
+    if (!gameBoard.setField(idx, sign)) return;
     displayController.setFieldDom(btn, sign);
 
-    if(gameBoard.checkWinner(sign)) {
+    if (gameBoard.checkWinner(sign)) {
       displayController.showPlayerWinner(sign);
       roundOver = true;
-    }
-    else if(round > 8) {
+    } else if (round > 8) {
       displayController.showDraw();
       roundOver = true;
-    }
-    else {
+    } else {
       displayController.showPlayerTurn(nextSign);
     }
-    round++;
+    round += 1;
 
-    //Make random computer move, if gamemode is AI
-    if(gameMode === GameModeEnum.computer && nextSign === 'O') {
+    // Make random computer move, if gamemode is AI
+    if (gameMode === GameModeEnum.computer && nextSign === 'O') {
       playAIRound(nextSign, sign);
     }
-  }
+  };
 
   const playAIRound = (nextSign, currentSign) => {
-    if(roundOver) return;
+    if (roundOver) return;
 
-    let idx = gameBoard.getRandomEmptyField();
-    let btn = document.getElementById(idx);
+    const idx = gameBoard.getRandomEmptyField();
+    const btn = document.getElementById(idx);
 
-    if(!gameBoard.setField(idx, nextSign)) return;
+    if (!gameBoard.setField(idx, nextSign)) return;
     displayController.setFieldDom(btn, nextSign);
 
-    if(gameBoard.checkWinner(nextSign)) {
+    if (gameBoard.checkWinner(nextSign)) {
       displayController.showComputerWinner(nextSign);
       roundOver = true;
-    }
-    else if(round > 8) {
+    } else if (round > 8) {
       displayController.showDraw();
       roundOver = true;
-    }
-    else {
-      //Always shows that its player x's turn
+    } else {
+      // Always shows that its player x's turn
       displayController.showPlayerTurn(currentSign);
     }
-    round++;
-  }
+    round += 1;
+  };
 
   const resetGame = () => {
     round = 1;
@@ -272,7 +283,13 @@ const gameController = (() => {
     displayController.resetDom();
     gameBoard.resetBoard();
     displayController.showPlayerTurn('X');
-  }
+  };
 
-  return Object.freeze({ playRound, resetGame, isRoundOver, initPlayerTwo, setGameMode });
+  return Object.freeze({
+    playRound,
+    resetGame,
+    isRoundOver,
+    initPlayerTwo,
+    setGameMode,
+  });
 })();

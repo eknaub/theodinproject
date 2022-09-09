@@ -1,5 +1,3 @@
-"use strict";
-
 class Task {
   constructor(title, description, id) {
     this.title = title;

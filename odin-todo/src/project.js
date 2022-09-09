@@ -1,7 +1,5 @@
-"use strict";
-
 class Project {
-  constructor (title, id) {
+  constructor(title, id) {
     this.title = title;
     this.id = id;
     this.tasks = [];
@@ -12,8 +10,8 @@ class Project {
   }
 
   removeTask(selectedTask) {
-    this.tasks = this.tasks.filter(task => task.title !== selectedTask.title);
+    this.tasks = this.tasks.filter((task) => task.title !== selectedTask.title);
   }
-};
+}
 
 export default Project;
