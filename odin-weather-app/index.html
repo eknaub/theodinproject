@@ -13,18 +13,14 @@
     <div class="left column">
       <div class="logo font-small">Weathery</div>
       <div class="weather">
-        <div id="degree" class="font-large">16°</div>
+        <div id="degree" class="font-large"></div>
         <div class="location-container">
-          <div id="location" class="font-medium">London</div>
+          <div id="location" class="font-medium"></div>
           <div id="current-date" class="font-small">13:37 - Monday, 12.09.2022</div>
         </div>
-        <div class="column">
-          <div id="condition-icon">
-            icon
-          </div>
-          <div id="condition-desc" class="font-small">
-            Cloudy
-          </div>
+        <div class="column center">
+          <div id="condition-icon"></div>
+          <div id="condition-desc" class="font-small"></div>
         </div>
       </div>
     </div>
@@ -38,11 +34,40 @@
         <button id="search"></button>
       </div>
       <hr>
-      <div class="weather-details">
-        <div class="font-small padding">
+      <div class="weather-details padding">
+        <div class="font-small">
           Weather Details
         </div>
+        <div class="entry font-smol">
+          Feels like:
+          <div id="weatherFeelsLike"></div>
+        </div>
+        <div class="entry font-smol">
+          Temperatur low:
+          <div id="tempMin"></div>
+        </div>
+        <div class="entry font-smol">
+          Temperatur high:
+          <div id="tempMax"></div>
+        </div>
+        <div class="entry font-smol">
+          Wind:
+          <div id="windSpeed"></div>
+        </div>
+        <div class="entry font-smol">
+          Cloudiness:
+          <div id="cloudPercent"></div>
+        </div>
+        <div class="entry font-smol">
+          Sunrise:
+          <div id="sunrise"></div>
+        </div>
+        <div class="entry font-smol">
+          Sunset:
+          <div id="sunset"></div>
+        </div>
       </div>
+      <hr>
     </div>
   </div>
 </body>
