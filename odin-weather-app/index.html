@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weathery</title>
+  <script src="./js/index.js" defer></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="main">
+    <div class="left column">
+      <div class="logo font-small">Weathery</div>
+      <div class="weather">
+        <div id="degree" class="font-large">16°</div>
+        <div class="location-container">
+          <div id="location" class="font-medium">London</div>
+          <div id="current-date" class="font-small">13:37 - Monday, 12.09.2022</div>
+        </div>
+        <div class="column">
+          <div id="condition-icon">
+            icon
+          </div>
+          <div id="condition-desc" class="font-small">
+            Cloudy
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="searchbar-wrapper">
+        <div class="searchbar">
+          <div id="info"></div>
+          <input type="text" id="searchinput" placeholder="Location">
+          <input type="checkbox" id="unit">
+        </div>
+        <button id="search"></button>
+      </div>
+      <hr>
+      <div class="weather-details">
+        <div class="font-small padding">
+          Weather Details
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
