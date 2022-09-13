@@ -11,10 +11,6 @@ async function initDom() {
 }
 
 function initButtons() {
-  let infoBtn = document.getElementById('info');
-  infoBtn.addEventListener('click', () => {
-    console.log('Show info');
-  });
   let searchBtn = document.getElementById('search');
   searchBtn.addEventListener('click', () => {
     buildData(false);
@@ -27,7 +23,6 @@ function initButtons() {
 }
 
 async function buildData(unitChanged) {
-  resetWeather();
   const unitSwitch = document.getElementById('unit');
   const inputField = document.getElementById('searchinput');
 
@@ -44,11 +39,18 @@ async function buildData(unitChanged) {
   if(location === '') return;
   const locationSplit = location.split(',');
   lastSearch = locationSplit;
+  inputField.value = '';
   const weatherData = await getWeatherDataForLocation(locationSplit, unit);
   displayWeather(weatherData, unit);
 }
 
 function displayWeather(weatherData, unit) {
+  resetWeather();
+  if(weatherData.cod === '404') {
+    const locationDom = document.getElementById('location');
+    locationDom.textContent = weatherData.message;
+    return;
+  }
   // For Main (left side)
   const location = weatherData.name;
   const currentTemp = weatherData.main.temp;
@@ -117,6 +119,8 @@ function formatWindSpeed(speed, unit) {
 }
 
 function resetWeather() {
+  const currentDate = document.getElementById('current-date');
+  currentDate.textContent = '';
   const degreeDom = document.getElementById('degree');
   degreeDom.textContent = '';
   const locationDom = document.getElementById('location');
@@ -145,7 +149,6 @@ function resetWeather() {
 
 async function getWeatherDataForLocation(location, unit) {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=${unit}`
-  console.log(url);
   const response = await fetch(url, {mode: 'cors'});
   const weatherData = await response.json();
 
