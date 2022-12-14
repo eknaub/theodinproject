@@ -5,7 +5,7 @@ class Node {
   }
 }
 
-export class LinkedList {
+module.exports = class LinkedList {
   constructor() {
     this.headNode = null;
     this.length = 0;
