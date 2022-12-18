@@ -1,5 +1,7 @@
 import { Component } from "react";
+import PreviewEducation from "./PreviewEducation";
 import PreviewGeneral from "./PreviewGeneral";
+import PreviewWork from "./PreviewWork";
 
 class PreviewMain extends Component {
   constructor(props) {
@@ -7,10 +9,14 @@ class PreviewMain extends Component {
   };
 
   render() {
+    const { generalInformation, educationExperience, workExperience } = this.props;
+
     return (
       <div>
         PreviewMain
-        <PreviewGeneral generalInformation={this.props.generalInformation}></PreviewGeneral>
+        <PreviewGeneral generalInformation={generalInformation}></PreviewGeneral>
+        <PreviewEducation educationExperience={educationExperience}></PreviewEducation>
+        <PreviewWork workExperience={workExperience}></PreviewWork>
       </div>
     );
   };

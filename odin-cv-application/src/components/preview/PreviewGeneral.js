@@ -6,14 +6,16 @@ class PreviewGeneral extends Component {
   };
 
   render() {
+    const { generalInformation } = this.props;
+    
     return (
       <div>
         General Preview
-        <label htmlFor="firstNameInput">{this.props.generalInformation.firstName}</label>
-        <label htmlFor="lastNameInput">{this.props.generalInformation.lastName}</label>
-        <label htmlFor="addressInput">{this.props.generalInformation.address}</label>
-        <label htmlFor="phoneInput">{this.props.generalInformation.phone}</label>
-        <label htmlFor="emailInput">{this.props.generalInformation.email}</label>
+        <label htmlFor="firstNameInput">{generalInformation.firstName}</label>
+        <label htmlFor="lastNameInput">{generalInformation.lastName}</label>
+        <label htmlFor="addressInput">{generalInformation.address}</label>
+        <label htmlFor="phoneInput">{generalInformation.phone}</label>
+        <label htmlFor="emailInput">{generalInformation.email}</label>
       </div>
     );
   };
