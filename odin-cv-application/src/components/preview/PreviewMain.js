@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PreviewGeneral from "./PreviewGeneral";
 
 class PreviewMain extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class PreviewMain extends Component {
     return (
       <div>
         PreviewMain
+        <PreviewGeneral generalInformation={this.props.generalInformation}></PreviewGeneral>
       </div>
     );
   };
