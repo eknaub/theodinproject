@@ -9,7 +9,7 @@ class PreviewMain extends Component {
   };
 
   render() {
-    const { generalInformation, educationList, workExperience } = this.props;
+    const { generalInformation, educationList, workList } = this.props;
 
     return (
       <div>
@@ -17,7 +17,8 @@ class PreviewMain extends Component {
         <PreviewGeneral generalInformation={generalInformation}></PreviewGeneral>
         Education Preview
         <PreviewEducation educationList={educationList}></PreviewEducation>
-        {/*<PreviewWork workExperience={workExperience}></PreviewWork>*/}
+        Work Preview
+        <PreviewWork workList={workList}></PreviewWork>
       </div>
     );
   };

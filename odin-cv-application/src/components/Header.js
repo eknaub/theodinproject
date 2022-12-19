@@ -8,7 +8,7 @@ class Header extends Component {
   render() {
     return (
       <div>
-        Header
+        CV Application
       </div>
     );
   };

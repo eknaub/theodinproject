@@ -6,17 +6,22 @@ class PreviewGeneral extends Component {
   };
 
   render() {
-    const { workExperience } = this.props;
+    const { workList } = this.props;
     
     return (
       <div>
-        Work Preview
-        <label htmlFor="positionInput">{workExperience.position}</label>
-        <label htmlFor="companyNameInput">{workExperience.companyName}</label>
-        <label htmlFor="locationInput">{workExperience.location}</label>
-        <label htmlFor="descriptionInput">{workExperience.description}</label>
-        <label htmlFor="fromInput">{workExperience.from}</label>
-        <label htmlFor="toInput">{workExperience.to}</label>
+        {workList.map((t) => {
+          return (
+            <div key={t.workExperience.id}>
+              <label htmlFor="positionInput">{t.workExperience.position}</label>
+              <label htmlFor="companyNameInput">{t.workExperience.companyName}</label>
+              <label htmlFor="locationInput">{t.workExperience.location}</label>
+              <label htmlFor="descriptionInput">{t.workExperience.description}</label>
+              <label htmlFor="fromInput">{t.workExperience.from}</label>
+              <label htmlFor="toInput">{t.workExperience.to}</label>
+            </div>
+          );
+        })}
       </div>
     );
   };

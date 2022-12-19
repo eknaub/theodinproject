@@ -11,7 +11,7 @@ class FormMain extends Component {
   render() {
     const { onGeneralChanged,
        onEducationChanged, educationList, onEducationAdd, onEducationDelete,
-       onWorkChanged } = this.props;
+       onWorkChanged, workList, onWorkAdd, onWorkDelete } = this.props;
 
     return (
       <div>
@@ -20,7 +20,7 @@ class FormMain extends Component {
         EDUCATION
         <EducationExp onEducationChanged={onEducationChanged} educationList={educationList} onEducationAdd={onEducationAdd} onEducationDelete={onEducationDelete}></EducationExp>
         Work Experience
-        <WorkExp onWorkChanged={onWorkChanged}></WorkExp>
+        <WorkExp onWorkChanged={onWorkChanged} workList={workList} onWorkAdd={onWorkAdd} onWorkDelete={onWorkDelete}></WorkExp>
       </div>
     );
   };

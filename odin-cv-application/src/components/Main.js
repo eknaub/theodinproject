@@ -2,6 +2,7 @@ import { Component } from "react";
 import FormMain from './form/FormMain';
 import PreviewMain from './preview/PreviewMain';
 import uniqid from "uniqid";
+import '../styles/main.css'
 
 class Main extends Component {
   constructor(props) {
@@ -27,7 +28,19 @@ class Main extends Component {
           },
         }
       ],
-      workList: [],
+      workList: [
+        {
+          workExperience: { 
+            id: uniqid(),
+            position: '',
+            companyName: '',
+            location: '',
+            description: '',
+            from: '',
+            to: '',
+          },
+        }
+      ],
     }
 
     this.handleGeneralInformation = this.handleGeneralInformation.bind(this);
@@ -35,6 +48,8 @@ class Main extends Component {
     this.handleEducationAdd = this.handleEducationAdd.bind(this);
     this.handleEducationDelete = this.handleEducationDelete.bind(this);
     this.handleWorkExperience = this.handleWorkExperience.bind(this);
+    this.handleWorkAdd = this.handleWorkAdd.bind(this);
+    this.handleWorkDelete = this.handleWorkDelete.bind(this);
   }
 
   handleGeneralInformation(e) {
@@ -88,27 +103,58 @@ class Main extends Component {
   }
 
   handleWorkExperience(e) {
+    this.state.workList.forEach((item) => {
+      if(item.workExperience.id === e.target.parentNode.id) {
+        item.workExperience.position = e.target.id === 'positionInput' ? e.target.value : item.workExperience.position;
+        item.workExperience.companyName = e.target.id === 'companyNameInput' ? e.target.value : item.workExperience.companyName;
+        item.workExperience.location = e.target.id === 'locationInput' ? e.target.value : item.workExperience.location;
+        item.workExperience.description = e.target.id === 'descriptionInput' ? e.target.value : item.workExperience.description;
+        item.workExperience.from = e.target.id === 'fromInput' ? e.target.value : item.workExperience.from;
+        item.workExperience.to = e.target.id === 'toInput' ? e.target.value : item.workExperience.to;
+      }
+    });
+
     this.setState( {
-      workExperience: { 
-        position: e.target.id === 'positionInput' ? e.target.value : this.state.workExperience.position,
-        companyName: e.target.id === 'companyNameInput' ? e.target.value : this.state.workExperience.companyName,
-        location: e.target.id === 'locationInput' ? e.target.value : this.state.workExperience.location,
-        description: e.target.id === 'descriptionInput' ? e.target.value : this.state.workExperience.description,
-        from: e.target.id === 'fromInput' ? e.target.value : this.state.workExperience.from,
-        to: e.target.id === 'toInput' ? e.target.value : this.state.workExperience.to,
-      },
+      workList: [...this.state.workList],
+    });
+  }
+
+  handleWorkAdd(e) {
+    this.setState( {
+      workList: [...this.state.workList, {
+        workExperience: { 
+          id: uniqid(),
+          position: e.target.id === 'positionInput' ? e.target.value : '',
+          companyName: e.target.id === 'companyNameInput' ? e.target.value : '',
+          location: e.target.id === 'locationInput' ? e.target.value : '',
+          description: e.target.id === 'descriptionInput' ? e.target.value : '',
+          from: e.target.id === 'fromInput' ? e.target.value : '',
+          to: e.target.id === 'toInput' ? e.target.value : '',
+        },
+      }],
+    });
+  }
+
+  handleWorkDelete(id) {
+    const newList = this.state.workList.filter((item) => item.workExperience.id !== id);
+    this.setState( {
+      workList: [...newList],
     });
   }
 
   render() {
     return (
-      <div>
-        Main
-        <FormMain 
+      <div id="main">
+        <div className="form">
+          <FormMain 
           onGeneralChanged={this.handleGeneralInformation} 
           educationList={this.state.educationList} onEducationChanged={this.handleEducationExperience} onEducationAdd={this.handleEducationAdd} onEducationDelete={this.handleEducationDelete}
-          onWorkChanged={this.handleWorkExperience}></FormMain>
-        <PreviewMain generalInformation={this.state.generalInformation} educationList={this.state.educationList} workExperience={this.state.workExperience}></PreviewMain>
+          workList={this.state.workList} onWorkChanged={this.handleWorkExperience} onWorkAdd={this.handleWorkAdd} onWorkDelete={this.handleWorkDelete}
+          ></FormMain>
+        </div>
+        <div className="preview">
+          <PreviewMain generalInformation={this.state.generalInformation} educationList={this.state.educationList} workList={this.state.workList}></PreviewMain>
+        </div>
       </div>
     );
   };

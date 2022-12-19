@@ -1,0 +1,14 @@
+#main {
+  display: flex;
+  flex-direction: row;
+}
+
+.form {
+  flex: 1;
+  background-color: beige;
+}
+
+.preview {
+  flex: 1;
+  background-color: blanchedalmond;
+}
