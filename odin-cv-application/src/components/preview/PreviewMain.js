@@ -9,14 +9,15 @@ class PreviewMain extends Component {
   };
 
   render() {
-    const { generalInformation, educationExperience, workExperience } = this.props;
+    const { generalInformation, educationList, workExperience } = this.props;
 
     return (
       <div>
         PreviewMain
         <PreviewGeneral generalInformation={generalInformation}></PreviewGeneral>
-        <PreviewEducation educationExperience={educationExperience}></PreviewEducation>
-        <PreviewWork workExperience={workExperience}></PreviewWork>
+        Education Preview
+        <PreviewEducation educationList={educationList}></PreviewEducation>
+        {/*<PreviewWork workExperience={workExperience}></PreviewWork>*/}
       </div>
     );
   };

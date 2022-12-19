@@ -9,14 +9,16 @@ class FormMain extends Component {
   };
 
   render() {
-    const { onGeneralChanged, onEducationChanged, onWorkChanged } = this.props;
-    
+    const { onGeneralChanged,
+       onEducationChanged, educationList, onEducationAdd, onEducationDelete,
+       onWorkChanged } = this.props;
+
     return (
       <div>
         General Information
         <GeneralInformation onGeneralChanged={onGeneralChanged}></GeneralInformation>
         EDUCATION
-        <EducationExp onEducationChanged={onEducationChanged}></EducationExp>
+        <EducationExp onEducationChanged={onEducationChanged} educationList={educationList} onEducationAdd={onEducationAdd} onEducationDelete={onEducationDelete}></EducationExp>
         Work Experience
         <WorkExp onWorkChanged={onWorkChanged}></WorkExp>
       </div>

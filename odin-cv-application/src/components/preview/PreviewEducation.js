@@ -6,19 +6,24 @@ class PreviewEducation extends Component {
   };
 
   render() {
-    const { educationExperience } = this.props;
+    const { educationList } = this.props;
 
     return (
       <div>
-        Education Preview
-        <label htmlFor="uniNameInput">{educationExperience.universityName}</label>
-        <label htmlFor="degreeInput">{educationExperience.degree}</label>
-        <label htmlFor="locationInput">{educationExperience.location}</label>
-        <label htmlFor="fromInput">{educationExperience.from}</label>
-        <label htmlFor="toInput">{educationExperience.to}</label>
+        {educationList.map((t) => {
+          return (
+            <div key={t.educationExperience.id}>
+              <label htmlFor="uniNameInput">{t.educationExperience.universityName}</label>
+              <label htmlFor="degreeInput">{t.educationExperience.degree}</label>
+              <label htmlFor="locationInput">{t.educationExperience.location}</label>
+              <label htmlFor="fromInput">{t.educationExperience.from}</label>
+              <label htmlFor="toInput">{t.educationExperience.to}</label>
+            </div>
+          );
+        })}
       </div>
     );
   };
-}
+};
 
 export default PreviewEducation;
