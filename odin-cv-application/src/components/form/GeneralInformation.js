@@ -10,16 +10,11 @@ class GeneralInformation extends Component {
     
     return (
       <div>
-        <label htmlFor="firstNameInput">First Name</label>
-        <input type='text' id='firstNameInput' onChange={onGeneralChanged}></input>
-        <label htmlFor="lastNameInput">Last Name</label>
-        <input type='text' id='lastNameInput' onChange={onGeneralChanged}></input>
-        <label htmlFor="addressInput">Address</label>
-        <input type='text' id='addressInput' onChange={onGeneralChanged}></input>
-        <label htmlFor="phoneInput">Phone</label>
-        <input type='text' id='phoneInput' onChange={onGeneralChanged}></input>
-        <label htmlFor="emailInput">Email</label>
-        <input type='text' id='emailInput' onChange={onGeneralChanged}></input>
+        <input type='text' id='firstNameInput' onChange={onGeneralChanged} placeholder="First name"></input>
+        <input type='text' id='lastNameInput' onChange={onGeneralChanged} placeholder="Last name"></input>
+        <input type='text' id='addressInput' onChange={onGeneralChanged} placeholder="Address"></input>
+        <input type='text' id='phoneInput' onChange={onGeneralChanged} placeholder="Phone"></input>
+        <input type='text' id='emailInput' onChange={onGeneralChanged} placeholder="Email"></input>
       </div>
     );
   };

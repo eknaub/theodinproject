@@ -1,0 +1,46 @@
+.category-title {
+  color: black;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.form-main {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 4px;
+  margin: 4px 0;
+  box-sizing: border-box;
+  border: 3px solid transparent;
+  background-color: rgb(230, 230, 230);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+input[type=text]:focus {
+  border: 3px solid rgb(200, 200, 200);
+}
+
+button {
+  background-color: #143E72;
+  border: none;
+  color: white;
+  padding: 12px;
+  margin-bottom: 4px;
+  margin-top: 4px;
+  display: inline-block;
+  font-size: 18px;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #10315a;
+}

@@ -118,7 +118,7 @@ function createFooter() {
 
   const link = document.createElement('a');
   link.classList.add('footer-link');
-  link.href = 'https://github.com/raqo0';
+  link.href = 'https://github.com/eknaub';
 
   footerWrapper.appendChild(link);
 

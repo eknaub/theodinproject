@@ -2,6 +2,7 @@ import { Component } from "react";
 import EducationExp from "./EducationExp";
 import GeneralInformation from "./GeneralInformation";
 import WorkExp from "./WorkExp";
+import '../../styles/form.css';
 
 class FormMain extends Component {
   constructor(props) {
@@ -14,12 +15,12 @@ class FormMain extends Component {
        onWorkChanged, workList, onWorkAdd, onWorkDelete } = this.props;
 
     return (
-      <div>
-        General Information
+      <div className="form-main">
+        <div className="category-title">General Information</div>
         <GeneralInformation onGeneralChanged={onGeneralChanged}></GeneralInformation>
-        EDUCATION
+        <div className="category-title">Education</div>
         <EducationExp onEducationChanged={onEducationChanged} educationList={educationList} onEducationAdd={onEducationAdd} onEducationDelete={onEducationDelete}></EducationExp>
-        Work Experience
+        <div className="category-title">Work experience</div>
         <WorkExp onWorkChanged={onWorkChanged} workList={workList} onWorkAdd={onWorkAdd} onWorkDelete={onWorkDelete}></WorkExp>
       </div>
     );

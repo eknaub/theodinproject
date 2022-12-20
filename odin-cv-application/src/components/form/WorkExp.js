@@ -13,23 +13,17 @@ class WorkExp extends Component {
         {workList.map((t) => {
           return (
               <div id={t.workExperience.id} key={t.workExperience.id}>
-                <label htmlFor="positionInput">Position</label>
-                <input type='text' id='positionInput' onChange={onWorkChanged}></input>
-                <label htmlFor="companyNameInput">Company Name</label>
-                <input type='text' id='companyNameInput' onChange={onWorkChanged}></input>
-                <label htmlFor="locationInput">Location</label>
-                <input type='text' id='locationInput' onChange={onWorkChanged}></input>
-                <label htmlFor="descriptionInput">Description</label>
-                <input type='text' id='descriptionInput' onChange={onWorkChanged}></input>
-                <label htmlFor="fromInput">From</label>
-                <input type='text' id='fromInput' onChange={onWorkChanged}></input>
-                <label htmlFor="toInput">To</label>
-                <input type='text' id='toInput' onChange={onWorkChanged}></input>
+                <input type='text' id='positionInput' onChange={onWorkChanged} placeholder="Position"></input>
+                <input type='text' id='companyNameInput' onChange={onWorkChanged} placeholder="Company name"></input>
+                <input type='text' id='locationInput' onChange={onWorkChanged} placeholder="Location"></input>
+                <input type='text' id='descriptionInput' onChange={onWorkChanged} placeholder="Description"></input>
+                <input type='text' id='fromInput' onChange={onWorkChanged} placeholder="From"></input>
+                <input type='text' id='toInput' onChange={onWorkChanged} placeholder="To"></input>
                 <button onClick={() => onWorkDelete(t.workExperience.id)}>Delete</button>
               </div>
           );
         })}
-        <button onClick={onWorkAdd}>Add</button>
+        <button className="add-new" onClick={onWorkAdd}>Add</button>
       </div>
     );
   };

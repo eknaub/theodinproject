@@ -146,7 +146,7 @@ class Main extends Component {
     return (
       <div id="main">
         <div className="form">
-          <FormMain 
+          <FormMain
           onGeneralChanged={this.handleGeneralInformation} 
           educationList={this.state.educationList} onEducationChanged={this.handleEducationExperience} onEducationAdd={this.handleEducationAdd} onEducationDelete={this.handleEducationDelete}
           workList={this.state.workList} onWorkChanged={this.handleWorkExperience} onWorkAdd={this.handleWorkAdd} onWorkDelete={this.handleWorkDelete}

@@ -1,0 +1,33 @@
+.preview-title {
+  color: white;
+  background-color: #10315A;
+  font-weight: bold;
+  font-size: 1.3em;
+  padding: 1em;
+}
+
+.preview-general-title,
+.preview-education-title {
+  color: #10315A;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.preview-general-wrapper,
+.preview-education-wrapper {
+  padding: 1em;
+  display: flex;
+}
+
+.preview-general-information,
+.preview-education-information {
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-group {
+  display: flex;
+  gap: 8px;
+  font-size: 1.1em;
+  padding: .5em;
+}

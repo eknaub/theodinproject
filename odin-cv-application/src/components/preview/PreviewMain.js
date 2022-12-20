@@ -2,6 +2,7 @@ import { Component } from "react";
 import PreviewEducation from "./PreviewEducation";
 import PreviewGeneral from "./PreviewGeneral";
 import PreviewWork from "./PreviewWork";
+import '../../styles/preview.css';
 
 class PreviewMain extends Component {
   constructor(props) {
@@ -13,11 +14,9 @@ class PreviewMain extends Component {
 
     return (
       <div>
-        PreviewMain
+        <div className="preview-title">Preview</div>
         <PreviewGeneral generalInformation={generalInformation}></PreviewGeneral>
-        Education Preview
         <PreviewEducation educationList={educationList}></PreviewEducation>
-        Work Preview
         <PreviewWork workList={workList}></PreviewWork>
       </div>
     );
