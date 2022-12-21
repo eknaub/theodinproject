@@ -7,17 +7,13 @@ class App extends Component {
 
     this.state = {
       count: 0,
+      mount: true,
     };
 
     this.onClickBtn = this.onClickBtn.bind(this);
-  }
 
-  componentDidMount() {
-    console.log("componentDidMount");
-  }
-
-  componentWillUnmount() {
-    console.log("componentWillUnmount");
+    this.mountCounter = () => this.setState({mount: true});
+    this.unmountCounter = () => this.setState({mount: false});
   }
 
   onClickBtn() {
@@ -29,7 +25,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <MyComponent title={this.state.count} onButtonClicked={this.onClickBtn}></MyComponent>
+        <button onClick={this.mountCounter} disabled={this.state.mount}>Mount counter</button>
+        <button onClick={this.unmountCounter} disabled={!this.state.mount}>Unmount counter</button>
+        {this.state.mount ? <MyComponent count={this.state.count} onButtonClicked={this.onClickBtn}></MyComponent> : null}
       </div>
     );
   }
