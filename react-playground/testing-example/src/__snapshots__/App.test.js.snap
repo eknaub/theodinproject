@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component renders heading inital 1`] = `
+<div>
+  <button
+    type="button"
+  >
+    Click me
+  </button>
+  <h1>
+    Initial
+  </h1>
+</div>
+`;
