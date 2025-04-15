@@ -1,0 +1,130 @@
+body {
+  margin: 0;
+}
+
+header {
+  display: flex;
+  background: dodgerblue;
+  padding: 2rem;
+  font-size: 2rem;
+  color: white;
+  align-items: center;
+}
+
+.header-image {
+  background: url("https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fG1lbnxlbnwwfHx8fDE2ODQ3NTY5MjA&ixlib=rb-4.0.3&q=80&w=1080")
+    no-repeat center center;
+  background-size: cover;
+  position: relative;
+  max-height: 500px;
+  width: 100%;
+}
+
+.header-image > h1 {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  height: 100%;
+}
+
+.about-me {
+  background: lightblue;
+  padding: 2rem;
+  font-size: 2rem;
+  color: white;
+}
+
+main {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 2rem;
+}
+
+.content {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+}
+
+.content > div {
+  background-color: #f1f1f1;
+  flex: 1;
+}
+
+.content-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #f1f1f1;
+}
+
+.content-card-img {
+  background: url("https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fG1lbnxlbnwwfHx8fDE2ODQ3NTY5MjA&ixlib=rb-4.0.3&q=80&w=1080")
+    no-repeat center center;
+  background-size: cover;
+  height: 200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+
+.content-card-data {
+  background: #f1f1f1;
+  color: black;
+}
+
+.content-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contact {
+  background: lightblue;
+  padding: 2rem;
+  font-size: 2rem;
+  color: white;
+}
+
+.contact-image {
+  background: url("https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fG1lbnxlbnwwfHx8fDE2ODQ3NTY5MjA&ixlib=rb-4.0.3&q=80&w=1080")
+    no-repeat center center;
+  background-size: cover;
+  height: 300px;
+  width: 100%;
+}
+
+footer {
+  display: flex;
+  background: dodgerblue;
+  padding: 2rem;
+  font-size: 2rem;
+  color: white;
+}
+
+@media (max-width: 1000px) {
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .content {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  footer {
+    flex-direction: column;
+  }
+  header {
+    flex-direction: column;
+  }
+}
