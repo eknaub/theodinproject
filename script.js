@@ -101,14 +101,19 @@ const projects = [
         liveDemo: "./odin-weather-app/index.html",
         code: "https://github.com/eknaub/theodinproject/tree/master/odin-weather-app",
       },
+    ],
+  },
+  {
+    category: "React",
+    projects: [
       {
-        title: "CV Application with React",
+        title: "CV Application",
         image: "./images/cv-application.png",
         liveDemo: "./odin-cv-application/build/index.html",
         code: "https://github.com/eknaub/theodinproject/tree/master/odin-cv-application",
       },
       {
-        title: "Memory Game with React",
+        title: "Memory Game",
         image: "./images/memory-game.png",
         liveDemo: "https://eknaub.github.io/odin-memory-game/",
         code: "https://github.com/eknaub/odin-memory-game",
