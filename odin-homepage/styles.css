@@ -4,36 +4,66 @@ body {
 
 header {
   display: flex;
-  background: dodgerblue;
+  position: relative;
   padding: 2rem;
   font-size: 2rem;
   color: white;
   align-items: center;
+  overflow: hidden;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%);
+  z-index: -1;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: dodgerblue;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  z-index: -2;
 }
 
 .header-image {
+  flex: 1;
   background: url("https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fG1lbnxlbnwwfHx8fDE2ODQ3NTY5MjA&ixlib=rb-4.0.3&q=80&w=1080")
     no-repeat center center;
   background-size: cover;
   position: relative;
-  max-height: 500px;
+  height: 400px;
   width: 100%;
-}
-
-.header-image > h1 {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  color: white;
-  text-align: center;
-  height: 100%;
 }
 
 .about-me {
-  background: lightblue;
+  flex: 2;
+  background: white;
   padding: 2rem;
-  font-size: 2rem;
-  color: white;
+  font-size: 1rem;
+  color: black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.about-me-socials {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
 }
 
 main {
@@ -60,6 +90,8 @@ main {
   display: flex;
   flex-direction: column;
   background-color: #f1f1f1;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .content-card-img {
@@ -87,25 +119,29 @@ main {
 }
 
 .contact {
-  background: lightblue;
-  padding: 2rem;
-  font-size: 2rem;
+  flex: 1;
+  font-size: 1rem;
   color: white;
 }
 
 .contact-image {
+  flex: 2;
   background: url("https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fG1lbnxlbnwwfHx8fDE2ODQ3NTY5MjA&ixlib=rb-4.0.3&q=80&w=1080")
     no-repeat center center;
   background-size: cover;
   height: 300px;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 footer {
   display: flex;
+  gap: 1rem;
   background: dodgerblue;
   padding: 2rem;
-  font-size: 2rem;
+  font-size: 1rem;
   color: white;
 }
 
@@ -113,6 +149,9 @@ footer {
   .content {
     display: grid;
     grid-template-columns: 1fr 1fr;
+  }
+  .about-me-socials {
+    display: none;
   }
 }
 
@@ -126,5 +165,17 @@ footer {
   }
   header {
     flex-direction: column;
+  }
+  .header-image {
+    flex: none;
+  }
+  .about-me {
+    flex: none;
+  }
+  .contact {
+    flex: none;
+  }
+  .contact-image {
+    flex: none;
   }
 }
