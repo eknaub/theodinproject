@@ -118,6 +118,12 @@ const projects = [
         liveDemo: "https://eknaub.github.io/odin-memory-game/",
         code: "https://github.com/eknaub/odin-memory-game",
       },
+      {
+        title: "Memory Game",
+        image: "./images/memory-game.png",
+        liveDemo: "./odin-cv-application-state/dist/index.html",
+        code: "https://github.com/eknaub/theodinproject/tree/master/odin-cv-application-state",
+      },
     ],
   },
 ];
