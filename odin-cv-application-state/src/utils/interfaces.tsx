@@ -11,6 +11,7 @@ export interface Education {
   startDate: string;
   endDate: string;
   location: string;
+  isVisible: boolean;
 }
 
 export interface Experience {
@@ -20,6 +21,7 @@ export interface Experience {
   endDate: string;
   location: string;
   description: string;
+  isVisible: boolean;
 }
 
 export interface CV {

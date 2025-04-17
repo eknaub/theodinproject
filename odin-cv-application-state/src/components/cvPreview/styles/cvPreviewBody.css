@@ -1,0 +1,61 @@
+.cvPreviewBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  color: #333;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-family: "Arial", sans-serif;
+  height: 100%;
+}
+
+.cvPreviewBodyEducation > h1,
+.cvPreviewBodyExperience > h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #222;
+  text-align: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+
+.cvPreviewBodyEducationItem {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+.cvPreviewBodyEducationItemTitle {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.cvPreviewBodyEducationItemDetail {
+  margin-bottom: 3px;
+}
+
+.cvPreviewBodyExperienceItem {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+.cvPreviewBodyExperienceItemTitle {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.cvPreviewBodyExperienceItemDetail {
+  margin-bottom: 3px;
+}

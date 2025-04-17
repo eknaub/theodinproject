@@ -1,12 +1,9 @@
+import "./styles/cvEdit.css";
+
 interface CVEditWrapperProps {
   children: React.ReactNode;
 }
 
 export function CVEditWrapper(props: CVEditWrapperProps) {
-  return (
-    <div>
-      <h1>CV Edit</h1>
-      {props.children}
-    </div>
-  );
+  return <div className="cvEditWrapper">{props.children}</div>;
 }

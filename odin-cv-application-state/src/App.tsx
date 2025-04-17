@@ -1,11 +1,14 @@
 import { CVEdit } from "./components/CVEdit";
 import { CVPreview } from "./components/CVPreview";
 import { CVProvider } from "./context/CVProvider";
+import "./app.css";
 
 function App() {
   return (
     <CVProvider>
-      <CVEdit /> <CVPreview />
+      <div className="appContainer">
+        <CVEdit /> <CVPreview />
+      </div>
     </CVProvider>
   );
 }

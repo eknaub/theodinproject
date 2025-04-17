@@ -14,6 +14,7 @@ export const dummyEducation: Education[] = [
     startDate: "2018-09-01",
     endDate: "2020-06-15",
     location: "Metropolis, USA",
+    isVisible: true,
   },
   {
     institution: "Metropolis College",
@@ -21,6 +22,7 @@ export const dummyEducation: Education[] = [
     startDate: "2014-09-01",
     endDate: "2018-06-15",
     location: "Metropolis, USA",
+    isVisible: true,
   },
 ];
 
@@ -33,6 +35,7 @@ export const dummyExperience: Experience[] = [
     location: "Metropolis, USA",
     description:
       "Led cross-functional teams to deliver projects on time and within budget.",
+    isVisible: true,
   },
   {
     company: "Finance Solutions",
@@ -41,6 +44,7 @@ export const dummyExperience: Experience[] = [
     endDate: "2020-12-31",
     location: "Metropolis, USA",
     description: "Conducted data analysis and prepared financial reports.",
+    isVisible: true,
   },
 ];
 
@@ -48,4 +52,15 @@ export const dummyCV: CV = {
   person: dummyPerson,
   education: dummyEducation,
   experience: dummyExperience,
+};
+
+export const dummyCVWithEmptyFields: CV = {
+  person: {
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+  },
+  education: [],
+  experience: [],
 };

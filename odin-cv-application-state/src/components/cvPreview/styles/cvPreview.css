@@ -1,0 +1,9 @@
+.cvPreviewContainer {
+  width: 800px; /* Set the desired width */
+  height: 1000px; /* Set the desired height */
+  border: 1px solid #ddd; /* Optional: Add a border for better visibility */
+  border-radius: 8px; /* Optional: Add rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for depth */
+  overflow: hidden; /* Prevent content from overflowing */
+  background-color: #fff; /* Set a background color */
+}
