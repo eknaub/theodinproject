@@ -124,6 +124,12 @@ const projects = [
         liveDemo: "https://odin-cv-application-state.vercel.app",
         code: "https://github.com/eknaub/odin-cv-application-state",
       },
+      {
+        title: "Fake Store with API",
+        image: "./images/fake-store.png",
+        liveDemo: "https://odin-fake-store.vercel.app",
+        code: "https://github.com/eknaub/odin-fake-store",
+      },
     ],
   },
 ];
