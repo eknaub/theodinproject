@@ -136,7 +136,8 @@ const projects = [
 
 const projectsContainer = document.getElementById("projects-container");
 
-projects.forEach((category) => {
+for (let i = projects.length - 1; i >= 0; i--) {
+  const category = projects[i];
   const categoryDiv = document.createElement("div");
   categoryDiv.classList.add("category");
 
@@ -180,4 +181,4 @@ projects.forEach((category) => {
 
   categoryDiv.appendChild(categoryContent);
   projectsContainer.appendChild(categoryDiv);
-});
+}
