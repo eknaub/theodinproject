@@ -1,0 +1,22 @@
+#card {
+  cursor: pointer;
+  background-color: #101012;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+  border: 1px solid #665024;
+  margin: 8px;
+  transition: 0.2s;
+}
+
+#card:hover {
+  background-color: rgba(102, 80, 36, 0.25);
+}
+
+#cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: auto;
+  width: 250px;
+}

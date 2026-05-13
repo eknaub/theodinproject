@@ -1,0 +1,15 @@
+#header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #665024;
+  color: white;
+  padding: 12px;
+  gap: 4px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+}
