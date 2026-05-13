@@ -115,20 +115,17 @@ const projects = [
       {
         title: "Memory Game",
         image: "./images/memory-game.png",
-        liveDemo: "https://eknaub.github.io/odin-memory-game/",
-        code: "https://github.com/eknaub/odin-memory-game",
+        code: "https://github.com/eknaub/theodinproject/tree/master/odin-memory-game",
       },
       {
         title: "CV Application (State Management)",
         image: "./images/cv-application-state.png",
-        liveDemo: "https://odin-cv-application-state.vercel.app",
-        code: "https://github.com/eknaub/odin-cv-application-state",
+        code: "https://github.com/eknaub/theodinproject/tree/master/odin-cv-application-state",
       },
       {
         title: "Fake Store with API",
         image: "./images/fake-store.png",
-        liveDemo: "https://odin-fake-store.vercel.app",
-        code: "https://github.com/eknaub/odin-fake-store",
+        code: "https://github.com/eknaub/theodinproject/tree/master/odin-fake-store",
       },
     ],
   },
@@ -165,10 +162,12 @@ for (let i = projects.length - 1; i >= 0; i--) {
     const linksDiv = document.createElement("div");
     linksDiv.classList.add("links");
 
-    const liveDemoLink = document.createElement("a");
-    liveDemoLink.href = project.liveDemo;
-    liveDemoLink.textContent = "Live Demo";
-    linksDiv.appendChild(liveDemoLink);
+    if (project.liveDemo) {
+      const liveDemoLink = document.createElement("a");
+      liveDemoLink.href = project.liveDemo;
+      liveDemoLink.textContent = "Live Demo";
+      linksDiv.appendChild(liveDemoLink);
+    }
 
     const codeLink = document.createElement("a");
     codeLink.href = project.code;
